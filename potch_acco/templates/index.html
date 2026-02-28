@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PotchAcco · Potchefstroom rentals | student · B&B · travel</title>
+  <!-- Font & icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1e1e1e;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    :root {
+      --deep-green: #1e4a3b;
+      --accent-green: #2c6e4f;
+      --light-green: #e8f3ed;
+      --pure-black: #0a0a0a;
+      --off-black: #222222;
+      --pure-white: #ffffff;
+      --border-light: #e0e7e3;
+      --card-shadow: 0 20px 30px -10px rgba(0, 40, 20, 0.15);
+    }
+    /* navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      color: var(--deep-green);
+    }
+    .logo span {
+      color: var(--off-black);
+      font-weight: 300;
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      font-weight: 500;
+      color: var(--off-black);
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .contact-btn {
+      background: var(--pure-black);
+      color: var(--pure-white) !important;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .contact-btn:hover {
+      background: var(--deep-green);
+    }
+    /* HERO with image - square corners */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      padding: 60px 0 80px;
+    }
+    .hero-left h1 {
+      font-size: 3.3rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--pure-black);
+      margin-bottom: 20px;
+    }
+    .hero-highlight {
+      color: var(--deep-green);
+      border-bottom: 3px solid var(--deep-green);
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: #4a4a4a;
+      max-width: 500px;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+    .hero-right {
+      background: var(--light-green);
+      /* square corners */
+      border-radius: 0px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      width: 100%;
+      max-width: 460px;
+      height: 320px;
+    }
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Category groups */
+    .category-group {
+      margin: 50px 0 30px;
+    }
+    .category-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--deep-green);
+      padding-bottom: 12px;
+      margin-bottom: 30px;
+    }
+    .category-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--pure-black);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .category-title i {
+      color: var(--deep-green);
+      font-size: 2rem;
+    }
+    .category-title-link {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .category-title-link:hover {
+      color: var(--deep-green);
+    }
+    .category-title-link:hover i {
+      transform: translateX(4px);
+      transition: transform 0.15s;
+    }
+    .view-all {
+      font-weight: 600;
+      color: var(--deep-green);
+      text-decoration: none;
+      border: 1.5px solid var(--deep-green);
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      transition: 0.15s;
+    }
+    .view-all:hover {
+      background: var(--deep-green);
+      color: white;
+    }
+    /* provider grid within category */
+    .providers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    /* provider card - square image corners */
+    .provider-card {
+      background: var(--pure-white);
+      border-radius: 0px;  /* square overall card edges — keep consistent */
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 30, 10, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+    }
+    .provider-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 40px -15px rgba(30, 74, 59, 0.3);
+      border-color: var(--deep-green);
+    }
+    .card-img {
+      height: 170px;
+      background-color: #c0dbc8;
+      overflow: hidden;
+      /* square image container */
+      border-radius: 0px;
+    }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+      border-radius: 0px; /* square */
+    }
+    .provider-card:hover .card-img img {
+      transform: scale(1.03);
+    }
+    .card-content {
+      padding: 22px 22px 26px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .provider-name {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--pure-black);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .provider-type {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-green);
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      margin-bottom: 14px;
+    }
+    .provider-type i {
+      font-size: 1rem;
+    }
+    .provider-desc {
+      color: #5a5a5a;
+      font-weight: 400;
+      margin-bottom: 18px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 16px 0 20px;
+      background: var(--light-green);
+      padding: 16px 14px;
+      border-radius: 0px; /* square */
+      border: 1px solid #d0e2d6;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--off-black);
+      word-break: break-word;
+    }
+    .contact-item i {
+      width: 22px;
+      color: var(--deep-green);
+      font-size: 1.1rem;
+    }
+    .contact-item a {
+      color: var(--off-black);
+      text-decoration: none;
+      border-bottom: 1px dotted transparent;
+      transition: border-color 0.15s;
+    }
+    .contact-item a:hover {
+      border-bottom: 1px dotted var(--deep-green);
+      color: var(--deep-green);
+    }
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px dashed #ccdcd2;
+      padding-top: 16px;
+      margin: 8px 0 12px;
+    }
+    .units {
+      background: var(--light-green);
+      padding: 6px 14px;
+      border-radius: 40px; /* keep rounded for tags, but images square */
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--deep-green);
+    }
+    .rating i {
+      color: var(--deep-green);
+      margin-right: 4px;
+      font-size: 0.9rem;
+    }
+    .rating span {
+      font-weight: 500;
+      color: var(--off-black);
+    }
+    .profile-btn {
+      background: transparent;
+      border: 2px solid var(--deep-green);
+      color: var(--deep-green);
+      font-weight: 700;
+      padding: 14px 20px;
+      border-radius: 0px; /* square button to match aesthetic? keeping consistent, but could be subtle; let's make square as well */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 1rem;
+      margin-top: 8px;
+      cursor: pointer;
+      transition: 0.15s;
+      width: 100%;
+    }
+    .profile-btn i {
+      font-size: 1.1rem;
+    }
+    .profile-btn:hover {
+      background: var(--deep-green);
+      color: white;
+    }
+
+    /* partner strip - square images */
+    .partner-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px 30px;
+      margin: 40px 0 60px;
+      padding: 40px 0;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .partner-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #2e4a3a;
+      background: #f5faf7;
+      padding: 6px 20px 6px 10px;
+      border-radius: 0px; /* square outer, but we want consistent */
+      border: 1px solid #d0e0d6;
+    }
+    .partner-img {
+      width: 42px;
+      height: 42px;
+      background: #b8d5c0;
+      overflow: hidden;
+      border: 2px solid white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      border-radius: 0px; /* square images */
+    }
+    .partner-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0px;
+    }
+
+    /* CTA with image - square */
+    .cta-banner {
+      background: linear-gradient(105deg, #0f2a20 0%, #1a3f30 100%);
+      border-radius: 0px; /* square corners for entire banner */
+      padding: 0;
+      margin: 80px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      color: white;
+      overflow: hidden;
+      min-height: 260px;
+    }
+    .cta-left {
+      padding: 48px 48px;
+      max-width: 600px;
+    }
+    .cta-left h2 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .cta-left h2 i {
+      color: var(--deep-green);
+      background: rgba(255,255,255,0.2);
+      padding: 8px;
+      border-radius: 0px;
+      margin-right: 12px;
+    }
+    .cta-left p {
+      color: #d0e0d8;
+      font-size: 1.1rem;
+    }
+    .cta-image {
+      width: 300px;
+      height: 260px;
+      flex-shrink: 0;
+    }
+    .cta-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.9;
+      border-radius: 0px; /* square */
+    }
+    .cta-btn {
+      background: var(--deep-green);
+      color: white;
+      border: none;
+      padding: 18px 38px;
+      border-radius: 0px; /* square */
+      font-weight: 600;
+      font-size: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+      cursor: default;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* footer */
+    .footer {
+      padding: 40px 0 60px;
+      color: #5c5c5c;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .footer-col p {
+      max-width: 260px;
+      margin: 20px 0;
+    }
+    .social i {
+      color: var(--deep-green);
+      font-size: 1.6rem;
+      margin-right: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 80px;
+    }
+    .footer-links a {
+      display: block;
+      color: #5c5c5c;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .footer-links a:first-child {
+      font-weight: 600;
+      color: var(--pure-black);
+      margin-bottom: 20px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-light);
+      margin: 10px 0 30px;
+    }
+
+    @media (max-width: 800px) {
+      .hero { flex-direction: column; }
+      .cta-banner { flex-direction: column; }
+      .cta-image { width: 100%; height: 200px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- nav -->
+    <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Rental Providers</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+      <a href="#" class="contact-btn">List your property</a>
+    </nav>
+
+    <!-- HERO without stats, square image -->
+    <div class="hero">
+      <div class="hero-left">
+        <h1>One stop for <br><span class="hero-highlight">Potchefstroom</span> rentals</h1>
+        <p class="hero-sub">Students, lovers, travelers — find your place among the best real estate providers in Potch.</p>
+      </div>
+      <div class="hero-right">
+        <img src="https://images.unsplash.com/photo-1626178793926-22b28830aa30?q=80&w=2070&auto=format&fit=crop" alt="Potchefstroom historic building" loading="lazy">
+      </div>
+    </div>
+
+    <!-- CATEGORY: STUDENT ACCOMMODATION (clickable title) -->
+    <div class="category-group">
+      <div class="category-header">
+        <a href="/category/student" class="category-title-link" onclick="alert('Navigate to full student accommodation listing page'); return false;">
+          <div class="category-title">
+            <i class="fas fa-graduation-cap"></i> Student accommodation
+          </div>
+        </a>
+        <a href="/category/student" class="view-all" onclick="alert('View all student properties'); return false;">View all <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="providers-grid">
+        <!-- Villa Bravado (student) -->
+        <div class="provider-card">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1555852105-64f35c0c556b?q=80&w=1974&auto=format&fit=crop" alt="Villa Bravado" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Villa Bravado</div>
+            <div class="provider-type"><i class="fas fa-graduation-cap"></i> Student living</div>
+            <div class="provider-desc">Premium studios & shared flats 2min from NWU. Fiber, borehole water.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27181234567">+27 18 123 4567</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:res@villabravado.co.za">res@villabravado.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.villabravado.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">32 units</span><span class="rating"><i class="fas fa-star"></i> <span>4.8</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Villa Bravado — coming soon')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- The Campus Hub (student) -->
+        <div class="provider-card">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=2071&auto=format&fit=crop" alt="The Campus Hub" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">The Campus Hub</div>
+            <div class="provider-type"><i class="fas fa-graduation-cap"></i> Student</div>
+            <div class="provider-desc">Modern apartments with gym, study lounges, and roof terrace.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27184567890">+27 18 456 7890</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:leasing@campushub.co.za">leasing@campushub.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.campushub.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">88 units</span><span class="rating"><i class="fas fa-star"></i> <span>4.6</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for The Campus Hub — coming soon')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- @Home Potch (student & traveler) -->
+        <div class="provider-card">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1597200381847-30ec200eeb9a?q=80&w=1974&auto=format&fit=crop" alt="@Home Potch" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">@Home Potch</div>
+            <div class="provider-type"><i class="fas fa-graduation-cap"></i> Student & traveler</div>
+            <div class="provider-desc">Flexible leases, fully furnished, including hostel-style for backpackers.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27188901234">+27 18 890 1234</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:stay@athomepotch.co.za">stay@athomepotch.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.athomepotch.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">28 units</span><span class="rating"><i class="fas fa-star"></i> <span>4.2</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for @Home Potch — coming soon')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY: B&B / LOVERS (clickable title) -->
+    <div class="category-group">
+      <div class="category-header">
+        <a href="/category/bandb" class="category-title-link" onclick="alert('Navigate to full B&B / lovers page'); return false;">
+          <div class="category-title">
+            <i class="fas fa-heart"></i> B&B & couples retreat
+          </div>
+        </a>
+        <a href="/category/bandb" class="view-all" onclick="alert('View all B&Bs'); return false;">View all <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="providers-grid">
+        <!-- La Belle Nuit -->
+        <div class="provider-card">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=2070&auto=format&fit=crop" alt="La Belle Nuit" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">La Belle Nuit</div>
+            <div class="provider-type"><i class="fas fa-heart"></i> B&B · couples</div>
+            <div class="provider-desc">Intimate suites with spa baths, vineyard views, perfect for weekends.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27183456789">+27 18 345 6789</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@labelle.co.za">info@labelle.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.labelle.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">6 suites</span><span class="rating"><i class="fas fa-star"></i> <span>4.7</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for La Belle Nuit — coming soon')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- Ivy & Oak Manor -->
+        <div class="provider-card">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop" alt="Ivy & Oak Manor" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Ivy & Oak Manor</div>
+            <div class="provider-type"><i class="fas fa-heart"></i> Boutique B&B</div>
+            <div class="provider-desc">Edwardian house, antique furnishings, private verandas.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27186789012">+27 18 678 9012</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:manor@ivyoak.co.za">manor@ivyoak.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.ivyoak.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">5 suites</span><span class="rating"><i class="fas fa-star"></i> <span>5.0</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Ivy & Oak Manor — coming soon')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY: GUESTHOUSES & TRAVEL (clickable title) -->
+    <div class="category-group">
+      <div class="category-header">
+        <a href="/category/guesthouses" class="category-title-link" onclick="alert('Navigate to full guesthouses page'); return false;">
+          <div class="category-title">
+            <i class="fas fa-suitcase"></i> Guesthouses & travel stays
+          </div>
+        </a>
+        <a href="/category/guesthouses" class="view-all" onclick="alert('View all guesthouses'); return false;">View all <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="providers-grid">
+        <!-- Roosmaryn Guesthouse -->
+        <div class="provider-card">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop" alt="Roosmaryn Guesthouse" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Roosmaryn Guesthouse</div>
+            <div class="provider-type"><i class="fas fa-suitcase"></i> Guesthouse</div>
+            <div class="provider-desc">Charming garden cottages, secure parking, breakfast included.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27182345678">+27 18 234 5678</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:stay@roosmaryn.co.za">stay@roosmaryn.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.roosmaryn.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">12 rooms</span><span class="rating"><i class="fas fa-star"></i> <span>4.9</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Roosmaryn Guesthouse — coming soon')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- Mooi Rivier Lodge -->
+        <div class="provider-card">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop" alt="Mooi Rivier Lodge" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Mooi Rivier Lodge</div>
+            <div class="provider-type"><i class="fas fa-suitcase"></i> Guesthouse</div>
+            <div class="provider-desc">Along the Mooi river, cozy stoep, lush garden, loads of character.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27185678901">+27 18 567 8901</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:bookings@mooirivier.co.za">bookings@mooirivier.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.mooirivier.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">10 rooms</span><span class="rating"><i class="fas fa-star"></i> <span>4.5</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Mooi Rivier Lodge — coming soon')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY: FLATS & APARTMENTS (clickable title) -->
+    <div class="category-group">
+      <div class="category-header">
+        <a href="/category/apartments" class="category-title-link" onclick="alert('Navigate to full apartments page'); return false;">
+          <div class="category-title">
+            <i class="fas fa-door-open"></i> Flats & apartments
+          </div>
+        </a>
+        <a href="/category/apartments" class="view-all" onclick="alert('View all apartments'); return false;">View all <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="providers-grid">
+        <!-- Residentia Potch -->
+        <div class="provider-card">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1545324418-cc1e3fa86c52?q=80&w=2070&auto=format&fit=crop" alt="Residentia Potch" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Residentia Potch</div>
+            <div class="provider-type"><i class="fas fa-door-open"></i> Apartments</div>
+            <div class="provider-desc">Secure flats near CBD, prepaid electricity, pet friendly options.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27187890123">+27 18 789 0123</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@residentia.co.za">info@residentia.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.residentia.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">45 units</span><span class="rating"><i class="fas fa-star"></i> <span>4.4</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Residentia Potch — coming soon')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- partner strip (square images) -->
+    <div class="partner-strip">
+      <div class="partner-item"><span class="partner-img"><img src="https://images.unsplash.com/photo-1598928506909-30de9b7e6b6e?q=80&w=1974&auto=format&fit=crop" alt="Huis Eikenhof"></span> Huis Eikenhof</div>
+      <div class="partner-item"><span class="partner-img"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Vergeet-My-Niet"></span> Vergeet-My-Niet</div>
+      <div class="partner-item"><span class="partner-img"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=2025&auto=format&fit=crop" alt="Sunridge B&B"></span> Sunridge B&B</div>
+      <div class="partner-item"><span class="partner-img"><img src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?q=80&w=2069&auto=format&fit=crop" alt="NWU Residences"></span> NWU Residences</div>
+      <div class="partner-item"><span class="partner-img"><img src="https://images.unsplash.com/photo-1577493340887-b7bfff55027e?q=80&w=1974&auto=format&fit=crop" alt="Akasia Place"></span> Akasia Place</div>
+      <div class="partner-item"><span class="partner-img"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop" alt="Thabela Thula"></span> Thabela Thula</div>
+    </div>
+
+    <!-- CTA banner with square image -->
+    <div class="cta-banner">
+      <div class="cta-left">
+        <h2><i class="fas fa-shield-alt"></i> Trusted by thousands</h2>
+        <p>Every provider is vetted. Find exactly what you need — student digs, romantic B&Bs, or traveller guesthouses.</p>
+        <div class="cta-btn"><i class="fas fa-arrow-right"></i> Explore all providers</div>
+      </div>
+      <div class="cta-image">
+        <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=2070&auto=format&fit=crop" alt="Happy tenants in Potch" loading="lazy">
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+      <div class="footer-col">
+        <div class="logo" style="font-size: 2rem;">PotchAcco<span>.</span></div>
+        <p>Your single destination for every rental in Potchefstroom. Student, travel, love — we’ve got it.</p>
+        <div class="social">
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-x-twitter"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div>
+          <a href="#">Explore</a>
+          <a href="#">Student housing</a>
+          <a href="#">B&B / Guesthouses</a>
+          <a href="#">Travel stays</a>
+          <a href="#">All providers</a>
+        </div>
+        <div>
+          <a href="#">Company</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">List your property</a>
+          <a href="#">Trust & safety</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p style="text-align: center; color: #aaa; padding-bottom: 30px;">© 2025 PotchAcco — premium real estate showcase</p>
+  </div>
+</body>
+</html>
