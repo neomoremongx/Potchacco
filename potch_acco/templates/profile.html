@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -18,14 +18,14 @@
     }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #ffffff;
+      background-color: #f0f2f5; /* softer FB-like background */
       color: #1e1e1e;
       line-height: 1.5;
     }
     .container {
-      max-width: 1280px;
+      max-width: 980px; /* FB feed width */
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 20px;
     }
     :root {
       --deep-green: #1e4a3b;
@@ -36,15 +36,22 @@
       --pure-white: #ffffff;
       --border-light: #e0e7e3;
       --card-shadow: 0 20px 30px -10px rgba(0, 40, 20, 0.15);
+      --fb-bg: #ffffff;
+      --fb-gray: #65676b;
     }
 
-    /* navbar (identical) */
+    /* navbar (identical, but cleaner for FB style) */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
       border-bottom: 1px solid var(--border-light);
+      background: white;
+      padding-left: 20px;
+      padding-right: 20px;
+      border-radius: 0 0 12px 12px;
+      margin-bottom: 20px;
     }
     .logo {
       font-weight: 700;
@@ -78,101 +85,124 @@
       background: var(--deep-green);
     }
 
-    /* profile header (cover + profile photo) */
-    .profile-cover {
-      height: 280px;
+    /* ----- FACEBOOK‑STYLE PROFILE HEADER ----- */
+    .profile-header-fb {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    /* cover image (16:9 ratio, large) */
+    .fb-cover {
+      height: 320px; /* taller like FB */
       background-color: #b8d5c0;
       position: relative;
-      margin-top: 30px;
-      border: 1px solid var(--border-light);
       overflow: hidden;
     }
-    .profile-cover img {
+    .fb-cover img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-    .profile-photo-large {
-      position: absolute;
-      bottom: -50px;
-      left: 40px;
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      border: 5px solid white;
-      box-shadow: 0 12px 24px -8px rgba(0,40,20,0.4);
-      object-fit: cover;
-      background: white;
-      z-index: 20;
-    }
-    .profile-name-bar {
-      margin: 70px 0 30px 0;
+
+    /* profile picture row — absolutely positioned to overlap */
+    .fb-profile-row {
+      padding: 0 24px 24px 24px;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+      align-items: flex-end;
+      gap: 20px;
+      position: relative;
     }
-    .profile-name-bar h1 {
-      font-size: 2.8rem;
+
+    /* profile pic container */
+    .fb-profile-pic {
+      margin-top: -70px; /* pulls pic up over cover */
+      width: 168px;
+      height: 168px;
+      border-radius: 50%;
+      border: 4px solid white;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .fb-profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* name + badge area inline */
+    .fb-name-area {
+      flex: 1;
+      margin-top: 40px; /* align with pic */
+    }
+    .fb-name-area h1 {
+      font-size: 2.4rem;
       font-weight: 700;
       color: var(--pure-black);
       line-height: 1.2;
+      margin-bottom: 8px;
     }
-    .profile-badge {
+    .fb-badge {
       background: var(--light-green);
-      padding: 10px 26px;
+      padding: 6px 16px;
       font-weight: 600;
       color: var(--deep-green);
       border: 1px solid var(--border-light);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 30px;
+      font-size: 0.95rem;
     }
 
-    /* contact summary row (like mini contact card) */
-    .contact-summary {
+    /* contact summary row — styled like FB intro card */
+    .contact-summary-fb {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 20px 0 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       display: flex;
       flex-wrap: wrap;
-      gap: 30px 50px;
-      background: #f9fbfa;
-      padding: 28px 32px;
-      border: 1px solid var(--border-light);
-      margin: 30px 0 40px;
+      gap: 24px 36px;
     }
-    .contact-item-large {
+    .contact-item-fb {
       display: flex;
       align-items: center;
       gap: 16px;
+      font-size: 1.05rem;
     }
-    .contact-item-large i {
+    .contact-item-fb i {
       width: 36px;
       color: var(--deep-green);
       font-size: 1.8rem;
+      text-align: center;
     }
-    .contact-item-large .detail {
-      font-size: 1.2rem;
-    }
-    .contact-item-large .detail a {
+    .contact-item-fb .detail a {
       color: var(--off-black);
       text-decoration: none;
-      border-bottom: 1px dotted transparent;
+      font-weight: 500;
     }
-    .contact-item-large .detail a:hover {
-      border-bottom: 1px dotted var(--deep-green);
+    .contact-item-fb .detail a:hover {
+      text-decoration: underline;
       color: var(--deep-green);
     }
 
-    /* grid for main content: description + portfolio */
-    .profile-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin: 40px 0;
+    /* property locations card — only addresses now */
+    .properties-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin: 20px 0 20px;
     }
-    @media (max-width: 800px) {
-      .profile-grid { grid-template-columns: 1fr; }
-    }
-
-    /* about section */
-    .about-provider h2, .portfolio-section h2 {
+    .properties-card h2 {
       font-size: 2rem;
       font-weight: 700;
       color: var(--pure-black);
@@ -183,7 +213,86 @@
       border-bottom: 2px solid var(--light-green);
       padding-bottom: 12px;
     }
-    .about-provider h2 i, .portfolio-section h2 i {
+    .properties-card h2 i {
+      color: var(--deep-green);
+      font-size: 2rem;
+    }
+    .address-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .address-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 20px;
+      background: #f9fbfa;
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      transition: all 0.2s;
+    }
+    .address-item:hover {
+      background: white;
+      border-color: var(--deep-green);
+      box-shadow: 0 4px 12px rgba(0,40,20,0.08);
+    }
+    .address-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--light-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--deep-green);
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .address-text {
+      flex: 1;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--pure-black);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .address-text i {
+      color: var(--deep-green);
+      font-size: 1rem;
+      width: 20px;
+    }
+    .address-street {
+      color: var(--off-black);
+    }
+    @media (max-width: 600px) {
+      .address-item {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* main about card */
+    .about-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin: 20px 0 30px;
+    }
+    .about-card h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--pure-black);
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 2px solid var(--light-green);
+      padding-bottom: 12px;
+    }
+    .about-card h2 i {
       color: var(--deep-green);
       font-size: 2rem;
     }
@@ -196,6 +305,7 @@
     .provider-meta {
       background: var(--light-green);
       padding: 22px 28px;
+      border-radius: 12px;
       border: 1px solid #c6dbc8;
     }
     .provider-meta p {
@@ -210,96 +320,7 @@
       font-size: 1.3rem;
     }
 
-    /* portfolio cards (property showcase) */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 24px;
-    }
-    .property-card {
-      border: 1px solid var(--border-light);
-      background: white;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .property-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--card-shadow);
-      border-color: var(--deep-green);
-    }
-    .property-img {
-      height: 180px;
-      background-color: #cfdec7;
-      overflow: hidden;
-    }
-    .property-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
-    .property-card:hover .property-img img {
-      transform: scale(1.03);
-    }
-    .property-details {
-      padding: 22px 18px 20px;
-    }
-    .property-name {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--pure-black);
-      margin-bottom: 6px;
-    }
-    .property-type {
-      color: var(--accent-green);
-      font-weight: 500;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      margin-bottom: 12px;
-      display: flex;
-      gap: 8px;
-    }
-    .property-features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 18px;
-      margin: 18px 0;
-      font-size: 0.9rem;
-      color: #4a4a4a;
-    }
-    .property-features i {
-      color: var(--deep-green);
-      width: 20px;
-    }
-    .property-cta {
-      background: transparent;
-      border: 2px solid var(--deep-green);
-      color: var(--deep-green);
-      font-weight: 700;
-      padding: 12px 16px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      transition: 0.15s;
-      margin-top: 12px;
-    }
-    .property-cta:hover {
-      background: var(--deep-green);
-      color: white;
-    }
-
-    /* other listings banner */
-    .other-listings-note {
-      background: var(--light-green);
-      padding: 30px;
-      text-align: center;
-      margin: 50px 0 40px;
-      border: 1px solid var(--border-light);
-    }
-
-    /* footer (exact same) */
+    /* footer (same but cleaner) */
     .footer {
       padding: 40px 0 60px;
       color: #5c5c5c;
@@ -308,6 +329,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 40px;
+      background: transparent;
     }
     .footer-col p {
       max-width: 260px;
@@ -339,181 +361,134 @@
       margin: 10px 0 30px;
     }
 
-    /* demo back link */
+    /* back link (adjusted) */
     .back-link {
-      margin: 20px 0 0;
+      margin: 0 0 20px 0;
     }
     .back-link a {
       color: var(--deep-green);
       text-decoration: none;
       font-weight: 500;
+      background: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      display: inline-block;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .back-link i {
+      margin-right: 8px;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .fb-profile-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .fb-name-area {
+        margin-top: 0;
+      }
+      .fb-profile-pic {
+        margin-top: -50px;
+        width: 120px;
+        height: 120px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <!-- nav (same as all pages) -->
-    <nav class="navbar">
-      <div class="logo">PotchAcco<span>.</span></div>
-      <div class="nav-links">
-        <a href="thehome.html">Home</a>
-        <a href="#">Rental Providers</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </div>
-      <a href="#" class="contact-btn">Get Listed</a>
-    </nav>
+     {% include "nav.html" %}
 
     <!-- simple back navigation (demo) -->
     <div class="back-link">
       <a href="#" onclick="alert('Navigate back to provider list – demo'); return false;"><i class="fas fa-arrow-left"></i> All providers</a>
     </div>
 
-    <!-- profile cover & photo (dynamic for each provider) -->
-    <div class="profile-cover">
-      <img src="https://images.unsplash.com/photo-1555852105-64f35c0c556b?q=80&w=1974&auto=format&fit=crop" alt="Villa Bravado cover">
-      <img class="profile-photo-large" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop" alt="Manager profile">
-    </div>
-
-    <!-- provider name & badge -->
-    <div class="profile-name-bar">
-      <h1>Villa Bravado</h1>
-      <div class="profile-badge"><i class="fas fa-check-circle"></i> Vetted provider · since 2019</div>
-    </div>
-
-    <!-- contact summary (exactly as in card but larger) -->
-    <div class="contact-summary">
-      <div class="contact-item-large"><i class="fas fa-phone-alt"></i> <div class="detail"><a href="tel:+27181234567">+27 18 123 4567</a></div></div>
-      <div class="contact-item-large"><i class="fab fa-whatsapp"></i> <div class="detail"><a href="https://wa.me/27831234567">+27 83 123 4567</a></div></div>
-      <div class="contact-item-large"><i class="fas fa-envelope"></i> <div class="detail"><a href="mailto:res@villabravado.co.za">res@villabravado.co.za</a></div></div>
-      <div class="contact-item-large"><i class="fas fa-globe"></i> <div class="detail"><a href="#">www.villabravado.co.za</a></div></div>
-    </div>
-
-    <!-- main profile content: about + portfolio -->
-    <div class="profile-grid">
-      <!-- left: about the provider / mission / details -->
-      <div class="about-provider">
-        <h2><i class="fas fa-user-tie"></i> About us</h2>
-        <div class="provider-description">
-          <p>Villa Bravado is a family-run student accommodation provider located just 2 minutes from NWU Potchefstroom. Our mission is to create a safe, inclusive community where students can thrive. We offer premium studios and shared flats with high-speed fibre, borehole water, and 24/7 security.</p>
-          <p>We believe that where you live shapes your university experience. That's why every unit is designed for both study and connection – with communal gardens, study lounges, and regular social events. Our residents become part of the Bravado family.</p>
-        </div>
-        <div class="provider-meta">
-          <p><i class="fas fa-door-open"></i> <strong>Property types:</strong> Student accommodation, studios, shared flats</p>
-          <p><i class="fas fa-map-pin"></i> <strong>Location:</strong> 15 Steve Biko Avenue, Potchefstroom</p>
-          <p><i class="fas fa-star"></i> <strong>Rating:</strong> 4.8 (from 42 reviews)</p>
-          <p><i class="fas fa-calendar-alt"></i> <strong>Listed since:</strong> March 2023</p>
-        </div>
+    <!-- ========== FACEBOOK STYLE PROFILE HEADER ========== -->
+    <div class="profile-header-fb">
+      <!-- cover photo -->
+      <div class="fb-cover">
+        <img src="https://images.unsplash.com/photo-1555852105-64f35c0c556b?q=80&w=1974&auto=format&fit=crop" alt="Villa Bravado cover">
       </div>
 
-      <!-- right: portfolio of properties (units/buildings) -->
-      <div class="portfolio-section">
-        <h2><i class="fas fa-building"></i> Our properties</h2>
-        <div class="portfolio-grid">
-          <!-- property 1 -->
-          <div class="property-card">
-            <div class="property-img"><img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=2071&auto=format&fit=crop" alt="Bravado Main House"></div>
-            <div class="property-details">
-              <div class="property-name">Bravado Main</div>
-              <div class="property-type"><i class="fas fa-graduation-cap"></i> Student studios</div>
-              <div class="property-features">
-                <span><i class="fas fa-wifi"></i> Fibre</span>
-                <span><i class="fas fa-shield-alt"></i> Security</span>
-                <span><i class="fas fa-tshirt"></i> Laundry</span>
-              </div>
-              <div><strong>12 units</strong> · from R4,200/pm</div>
-              <button class="property-cta" onclick="alert('View details – demo')"><i class="fas fa-info-circle"></i> Quick view</button>
-            </div>
+      <!-- profile pic + name row (overlapping) -->
+      <div class="fb-profile-row">
+        <div class="fb-profile-pic">
+          <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop" alt="Manager profile">
+        </div>
+        <div class="fb-name-area">
+          <h1>Villa Bravado</h1>
+          <div class="fb-badge"><i class="fas fa-check-circle"></i> Vetted provider · since 2019</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- contact summary (styled like FB intro card) -->
+    <div class="contact-summary-fb">
+      <div class="contact-item-fb"><i class="fas fa-phone-alt"></i> <div class="detail"><a href="tel:+27181234567">+27 18 123 4567</a></div></div>
+      <div class="contact-item-fb"><i class="fab fa-whatsapp"></i> <div class="detail"><a href="https://wa.me/27831234567">+27 83 123 4567</a></div></div>
+      <div class="contact-item-fb"><i class="fas fa-envelope"></i> <div class="detail"><a href="mailto:res@villabravado.co.za">res@villabravado.co.za</a></div></div>
+      <div class="contact-item-fb"><i class="fas fa-globe"></i> <div class="detail"><a href="#">www.villabravado.co.za</a></div></div>
+    </div>
+
+    <!-- ===== PROPERTY LOCATIONS – ONLY ADDRESSES ===== -->
+    <div class="properties-card">
+      <h2><i class="fas fa-map-marker-alt"></i> Our locations</h2>
+      <div class="address-list">
+        <!-- address 1 -->
+        <div class="address-item">
+          
+          <div class="address-text">
+            
+            <span class="address-street">15 Steve Biko Avenue, Potchefstroom</span>
           </div>
-          <!-- property 2 -->
-          <div class="property-card">
-            <div class="property-img"><img src="https://images.unsplash.com/photo-1597200381847-30ec200eeb9a?q=80&w=1974&auto=format&fit=crop" alt="The Lofts"></div>
-            <div class="property-details">
-              <div class="property-name">The Lofts</div>
-              <div class="property-type"><i class="fas fa-graduation-cap"></i> Shared flats</div>
-              <div class="property-features">
-                <span><i class="fas fa-wifi"></i> Fibre</span>
-                <span><i class="fas fa-parking"></i> Parking</span>
-                <span><i class="fas fa-dumbbell"></i> Gym</span>
-              </div>
-              <div><strong>8 units</strong> · from R3,800/pm</div>
-              <button class="property-cta" onclick="alert('View details – demo')"><i class="fas fa-info-circle"></i> Quick view</button>
-            </div>
+        </div>
+        <!-- address 2 -->
+        <div class="address-item">
+          
+          <div class="address-text">
+             
+            <span class="address-street">22 Esselen Street, Potchefstroom</span>
           </div>
-          <!-- property 3 -->
-          <div class="property-card">
-            <div class="property-img"><img src="https://images.unsplash.com/photo-1555852105-64f35c0c556b?q=80&w=1974&auto=format&fit=crop" alt="Bravado Gardens"></div>
-            <div class="property-details">
-              <div class="property-name">Bravado Gardens</div>
-              <div class="property-type"><i class="fas fa-graduation-cap"></i> Studios + garden</div>
-              <div class="property-features">
-                <span><i class="fas fa-tree"></i> Garden</span>
-                <span><i class="fas fa-wifi"></i> Fibre</span>
-                <span><i class="fas fa-water"></i> Borehole</span>
-              </div>
-              <div><strong>10 units</strong> · from R4,500/pm</div>
-              <button class="property-cta" onclick="alert('View details – demo')"><i class="fas fa-info-circle"></i> Quick view</button>
-            </div>
+        </div>
+        <!-- address 3 -->
+        <div class="address-item">
+          
+          <div class="address-text">
+             
+            <span class="address-street">8 Peter Mokaba Street, Potchefstroom</span>
           </div>
-          <!-- property 4 (extra) -->
-          <div class="property-card">
-            <div class="property-img"><img src="https://images.unsplash.com/photo-1626178793926-22b28830aa30?q=80&w=2070&auto=format&fit=crop" alt="The Residences"></div>
-            <div class="property-details">
-              <div class="property-name">The Residences</div>
-              <div class="property-type"><i class="fas fa-graduation-cap"></i> Premium studios</div>
-              <div class="property-features">
-                <span><i class="fas fa-wifi"></i> Fibre</span>
-                <span><i class="fas fa-snowflake"></i> A/C</span>
-                <span><i class="fas fa-dumbbell"></i> Gym</span>
-              </div>
-              <div><strong>6 units</strong> · from R5,200/pm</div>
-              <button class="property-cta" onclick="alert('View details – demo')"><i class="fas fa-info-circle"></i> Quick view</button>
-            </div>
+        </div>
+        <!-- address 4 -->
+        <div class="address-item">
+          
+          <div class="address-text">
+           
+            <span class="address-street">3 Kock Street, Potchefstroom</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- additional info / other listings note (demo) -->
-    <div class="other-listings-note">
-      <i class="fas fa-building" style="font-size: 2.5rem; color: var(--deep-green); margin-bottom: 15px;"></i>
-      <h3 style="font-size: 1.8rem; font-weight: 600;">Manage your portfolio</h3>
-      <p style="margin: 15px 0; color: #2c4a3a;">This profile page can be customized for every provider – add as many properties as you like, update photos, and share your story.</p>
-      <button class="property-cta" style="max-width: 300px; margin: 10px auto; background: var(--deep-green); color: white; border: none;" onclick="alert('Edit profile / add property – demo')"><i class="fas fa-edit"></i> Edit provider profile</button>
+    <!-- main about section (full width card) -->
+    <div class="about-card">
+      <h2><i class="fas fa-user-tie"></i> About us</h2>
+      <div class="provider-description">
+        <p>Villa Bravado is a family-run student accommodation provider located just 2 minutes from NWU Potchefstroom. Our mission is to create a safe, inclusive community where students can thrive. We offer premium studios and shared flats with high-speed fibre, borehole water, and 24/7 security.</p>
+        <p>We believe that where you live shapes your university experience. That's why every unit is designed for both study and connection – with communal gardens, study lounges, and regular social events. Our residents become part of the Bravado family.</p>
+      </div>
+      <div class="provider-meta">
+        <p><i class="fas fa-door-open"></i> <strong>Property types:</strong> Student accommodation, studios, shared flats</p>
+        <p><i class="fas fa-map-pin"></i> <strong>Location:</strong> 15 Steve Biko Avenue, Potchefstroom</p>
+        <p><i class="fas fa-star"></i> <strong>Rating:</strong> 4.8 (from 42 reviews)</p>
+        <p><i class="fas fa-calendar-alt"></i> <strong>Listed since:</strong> March 2023</p>
+      </div>
     </div>
 
     <!-- footer (identical) -->
-    <div class="footer">
-      <div class="footer-col">
-        <div class="logo" style="font-size: 2rem;">PotchAcco<span>.</span></div>
-        <p>Your single destination for every rental in Potchefstroom. Student, travel, love — we’ve got it.</p>
-        <div class="social">
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-x-twitter"></i>
-          <i class="fab fa-linkedin-in"></i>
-        </div>
-      </div>
-      <div class="footer-links">
-        <div>
-          <a href="#">Explore</a>
-          <a href="#">Student housing</a>
-          <a href="#">B&B / Guesthouses</a>
-          <a href="#">Travel stays</a>
-          <a href="#">All providers</a>
-        </div>
-        <div>
-          <a href="#">Company</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-          <a href="#">List your property</a>
-          <a href="#">Trust & safety</a>
-          <a href="#">Terms & conditions</a>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <p style="text-align: center; color: #aaa; padding-bottom: 30px;">© 2025 PotchAcco — provider profile demo</p>
-
-  </div> <!-- container end -->
+    {% include "footer.html" %}
 </body>
 </html>

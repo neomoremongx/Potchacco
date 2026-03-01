@@ -36,5 +36,13 @@ def get_t_and_s(request):
 
     return render(request, "trust_safety.html")
 
+def get_specific_category(request):
+
+    return render(request, "list_by_category.html")
+
+def get_pricing(request):
+
+    return render(request, "pricing.html")
+
 
 

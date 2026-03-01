@@ -279,14 +279,7 @@
 <body>
   <div class="container">
     <!-- simple nav -->
-    <nav class="navbar">
-      <div class="logo">PotchAcco<span>.</span></div>
-      <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Providers</a>
-        <a href="#">Pricing</a>
-      </div>
-    </nav>
+   {% include "nav.html" %}
 
     <!-- payment header -->
     <div class="payment-header">
@@ -391,10 +384,6 @@
     </div>
 
     <!-- simple footer -->
-    <div class="footer">
-      <div class="logo" style="font-size: 1.5rem; margin-bottom: 15px;">PotchAcco<span>.</span></div>
-      <p>© 2025 PotchAcco — secure payment page</p>
-    </div>
-  </div>
+     {% include "footer.html" %}
 </body>
 </html>

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get Listed · PotchAcco | register as rental provider</title>
-  <!-- Font & icons (same as home/about) -->
+  <title>Get Listed · Partner with PotchAcco</title>
+  <!-- Font & icons (same as profile page) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ----- global / nav / footer styles (identical to other pages) ----- */
+    /* ----- global styles (mirror profile page) ----- */
     * {
       margin: 0;
       padding: 0;
@@ -18,14 +18,14 @@
     }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #ffffff;
+      background-color: #f0f2f5; /* soft FB-like background */
       color: #1e1e1e;
       line-height: 1.5;
     }
     .container {
-      max-width: 1280px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 20px;
     }
     :root {
       --deep-green: #1e4a3b;
@@ -36,6 +36,7 @@
       --pure-white: #ffffff;
       --border-light: #e0e7e3;
       --card-shadow: 0 20px 30px -10px rgba(0, 40, 20, 0.15);
+      --fb-gray: #65676b;
     }
 
     /* navbar (identical) */
@@ -45,6 +46,11 @@
       align-items: center;
       padding: 20px 0;
       border-bottom: 1px solid var(--border-light);
+      background: white;
+      padding-left: 20px;
+      padding-right: 20px;
+      border-radius: 0 0 12px 12px;
+      margin-bottom: 30px;
     }
     .logo {
       font-weight: 700;
@@ -78,242 +84,235 @@
       background: var(--deep-green);
     }
 
-    /* page header */
-    .list-header {
-      padding: 60px 0 30px;
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto;
+    /* back link (optional) */
+    .back-link {
+      margin: 0 0 20px 0;
     }
-    .list-header h1 {
-      font-size: 3.3rem;
-      font-weight: 700;
-      color: var(--pure-black);
-      margin-bottom: 20px;
-    }
-    .list-header .accent {
+    .back-link a {
       color: var(--deep-green);
-      border-bottom: 3px solid var(--deep-green);
-      padding-bottom: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      background: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      display: inline-block;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-    .list-header p {
-      font-size: 1.2rem;
-      color: #4a4a4a;
-      font-weight: 300;
+    .back-link i {
+      margin-right: 8px;
     }
 
-    /* registration card */
-    .register-card {
-      max-width: 850px;
-      margin: 20px auto 60px;
-      background: var(--pure-white);
-      border: 1px solid var(--border-light);
-      box-shadow: var(--card-shadow);
-      padding: 50px 48px;
+    /* page header */
+    .page-header {
+      margin-bottom: 32px;
+      text-align: center;
     }
-    .section-title {
-      font-size: 1.8rem;
+    .page-header h1 {
+      font-size: 2.8rem;
       font-weight: 700;
       color: var(--pure-black);
-      margin-bottom: 35px;
+      margin-bottom: 12px;
+    }
+    .page-header p {
+      font-size: 1.2rem;
+      color: var(--fb-gray, #65676b);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* pricing card highlight */
+    .pricing-highlight {
+      background: white;
+      border-radius: 40px;
+      padding: 28px 32px;
+      margin: 30px auto 30px;
+      max-width: 700px;
+      text-align: center;
+      border: 2px solid var(--deep-green);
+      box-shadow: 0 10px 25px -5px rgba(30, 74, 59, 0.2);
+    }
+    .pricing-highlight .price {
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--deep-green);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .pricing-highlight .price small {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--accent-green);
+    }
+    .pricing-highlight .sub {
+      font-size: 1.2rem;
+      color: var(--off-black);
+    }
+    .pricing-highlight i {
+      color: var(--deep-green);
+      margin-right: 8px;
+    }
+
+    /* contact cards grid — main CTA for providers */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 40px 0 30px;
+    }
+    @media (max-width: 700px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .contact-card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px 24px 36px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      border: 1px solid var(--border-light);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .contact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 30px -8px rgba(30, 74, 59, 0.2);
+      border-color: var(--deep-green);
+    }
+    .contact-icon {
+      width: 88px;
+      height: 88px;
+      background: var(--light-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      color: var(--deep-green);
+      font-size: 3.2rem;
+    }
+    .contact-card h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--pure-black);
+    }
+    .contact-card .action-line {
+      font-size: 1.2rem;
+      color: var(--off-black);
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+    .contact-card .btn {
+      display: inline-block;
+      background: var(--deep-green);
+      color: white;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      transition: background 0.2s;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+    .contact-card .btn i {
+      margin-right: 10px;
+    }
+    .contact-card .btn:hover {
+      background: #12372b; /* darker green */
+    }
+    .contact-card .btn-wa {
+      background: #25D366;
+    }
+    .contact-card .btn-wa:hover {
+      background: #1da858;
+    }
+    .contact-card .btn-call {
+      background: var(--pure-black);
+    }
+    .contact-card .btn-call:hover {
+      background: #2c2c2c;
+    }
+
+    /* extra info / faq style */
+    .info-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 40px 40px;
+      margin: 40px 0 40px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      border: 1px solid var(--border-light);
+    }
+    .info-panel h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--pure-black);
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
       gap: 12px;
       border-bottom: 2px solid var(--light-green);
-      padding-bottom: 15px;
+      padding-bottom: 16px;
     }
-    .section-title i {
+    .info-panel h2 i {
       color: var(--deep-green);
-      font-size: 2rem;
     }
-
-    /* form rows */
-    .form-row {
+    .benefits-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px 30px;
-      margin-bottom: 24px;
-    }
-    .form-group {
-      margin-bottom: 18px;
-    }
-    .form-group label {
-      font-weight: 600;
-      color: var(--off-black);
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.95rem;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 16px 18px;
-      border: 1px solid #d0ddd5;
-      background: white;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      border-radius: 0px;
-      transition: 0.15s;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--deep-green);
-      box-shadow: 0 0 0 3px rgba(30,74,59,0.15);
-    }
-    .form-group textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    /* property type checkboxes */
-    .property-types {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 25px 40px;
-      margin: 25px 0 30px;
-    }
-    .type-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 160px;
-    }
-    .type-item input[type="checkbox"] {
-      width: 22px;
-      height: 22px;
-      accent-color: var(--deep-green);
-    }
-    .type-item span {
-      font-weight: 500;
-      color: #2d4a3b;
-    }
-
-    /* upload areas (profile photo & cover) */
-    .upload-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      margin: 30px 0;
-    }
-    @media (max-width: 650px) {
-      .upload-grid { grid-template-columns: 1fr; }
-    }
-    .upload-area {
-      border: 2px dashed var(--border-light);
-      background: #f9fbfa;
-      padding: 30px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: background 0.1s;
-    }
-    .upload-area:hover {
-      background: #eff7f2;
-    }
-    .upload-area i {
-      font-size: 2.6rem;
-      color: var(--deep-green);
-      margin-bottom: 12px;
-    }
-    .upload-area p {
-      font-weight: 600;
-      color: #2c4a3a;
-    }
-    .upload-note {
-      font-size: 0.85rem;
-      color: #7a9c8a;
-      margin-top: 10px;
-    }
-    .preview-hint {
-      display: inline-block;
-      margin-top: 10px;
-      background: white;
-      padding: 6px 14px;
-      border: 1px solid var(--border-light);
-      font-size: 0.9rem;
-    }
-
-    /* verification checkbox */
-    .verify-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      margin: 40px 0 30px;
-      background: var(--light-green);
-      padding: 22px 24px;
-      border: 1px solid #c6dbc8;
-    }
-    .verify-item input[type="checkbox"] {
-      width: 24px;
-      height: 24px;
-      accent-color: var(--deep-green);
-      margin-top: 2px;
-    }
-    .verify-item label {
-      font-weight: 500;
-      color: #1d3b2f;
-      font-size: 1rem;
-    }
-
-    /* submit button */
-    .btn-primary {
-      background: var(--deep-green);
-      color: white;
-      border: none;
-      padding: 18px 48px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: 0.15s;
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      border-radius: 0px;
-      width: 100%;
-      justify-content: center;
-    }
-    .btn-primary:hover {
-      background: #15382c;
-    }
-
-    /* note after submit */
-    .form-note {
-      margin-top: 30px;
-      color: #5e8b77;
-      font-size: 0.95rem;
-      text-align: center;
-      border-top: 1px dashed var(--border-light);
-      padding-top: 25px;
-    }
-
-    /* benefits strip */
-    .benefits-strip {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px 30px;
-      margin: 20px 0 60px;
-      padding: 30px 0;
-      border-top: 1px solid var(--border-light);
-      border-bottom: 1px solid var(--border-light);
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
     }
     .benefit-item {
       display: flex;
-      align-items: center;
-      gap: 15px;
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: #2e4a3a;
+      gap: 16px;
+      align-items: flex-start;
     }
     .benefit-item i {
       color: var(--deep-green);
       font-size: 1.8rem;
+      width: 44px;
+      flex-shrink: 0;
+    }
+    .benefit-item p {
+      font-size: 1.1rem;
+      color: #3e3e3e;
+    }
+    .subscription-note {
+      background: #fff3d8;
+      border-left: 8px solid var(--deep-green);
+      padding: 20px 28px;
+      border-radius: 20px;
+      margin: 30px 0 10px;
+      font-size: 1.15rem;
+    }
+    .subscription-note i {
+      color: var(--deep-green);
+      margin-right: 16px;
+      font-size: 2rem;
+      vertical-align: middle;
     }
 
-    /* footer (exact same) */
+    /* small note about response time */
+    .response-note {
+      background: var(--light-green);
+      padding: 24px 32px;
+      border-radius: 60px;
+      text-align: center;
+      margin: 30px 0 40px;
+      font-weight: 500;
+      color: var(--deep-green);
+      border: 1px solid #c6dbc8;
+    }
+    .response-note i {
+      margin-right: 12px;
+      font-size: 1.4rem;
+    }
+
+    /* footer (identical) */
     .footer {
       padding: 40px 0 60px;
       color: #5c5c5c;
@@ -322,6 +321,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 40px;
+      background: transparent;
     }
     .footer-col p {
       max-width: 260px;
@@ -352,176 +352,105 @@
       border-top: 1px solid var(--border-light);
       margin: 10px 0 30px;
     }
-
-    @media (max-width: 600px) {
-      .register-card { padding: 30px 20px; }
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <!-- nav (same as all pages) -->
-    <nav class="navbar">
-      <div class="logo">PotchAcco<span>.</span></div>
-      <div class="nav-links">
-        <a href="thehome.html">Home</a>
-        <a href="#">Rental Providers</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+     {% include "nav.html" %}
+
+    <!-- simple back navigation (demo) -->
+    <div class="back-link">
+      <a href="#" onclick="alert('Navigate back to home – demo'); return false;"><i class="fas fa-arrow-left"></i> Back to home</a>
+    </div>
+
+    <!-- page header -->
+    <div class="page-header">
+      <h1>List your property with PotchAcco</h1>
+      <p>Join the fastest‑growing rental platform in Potchefstroom. Reach thousands of students and travellers.</p>
+    </div>
+
+    <!-- PRICING HIGHLIGHT – MONTHLY SUBSCRIPTION R250 -->
+    <div class="pricing-highlight">
+      <i class="fas fa-crown" style="font-size: 2.5rem; color: var(--deep-green); margin-bottom: 10px;"></i>
+      <div class="price">R250 <small>/ month</small></div>
+      <div class="sub"><i class="fas fa-check-circle"></i> Simple monthly subscription, no hidden costs</div>
+    </div>
+
+    <!-- MAIN CONTACT CARDS – email, whatsapp, call -->
+    <div class="contact-grid">
+      <!-- Email card -->
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fas fa-envelope-open-text"></i></div>
+        <h3>Email us</h3>
+        <div class="action-line">Send a listing request anytime</div>
+        <a href="mailto:listings@potchacco.co.za?subject=I%20want%20to%20list%20my%20property%20on%20PotchAcco%20(R250%20subscription)&body=Hi%20PotchAcco%20team,%0A%0AI'm%20interested%20in%20listing%20my%20rental%20property%20with%20the%20R250%2Fmonth%20subscription.%20Please%20get%20in%20touch.%0A%0AProperty%20name:%0ALocation:%0APhone:%0A" class="btn"><i class="fas fa-envelope"></i> listings@potchacco.co.za</a>
       </div>
-      <a href="#" class="contact-btn" style="background: var(--deep-green);">Get Listed</a>
-    </nav>
 
-    <!-- header -->
-    <div class="list-header">
-      <h1>Get your business <span class="accent">listed</span></h1>
-      <p>Join PotchAcco as a rental provider. Share your contact details, upload photos, and tell your story – we'll do the rest.</p>
+      <!-- WhatsApp card -->
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+        <h3>WhatsApp</h3>
+        <div class="action-line">Chat instantly with our team</div>
+        <a href="https://wa.me/27831234567?text=Hi%20PotchAcco!%20I%20would%20like%20to%20list%20my%20property%20on%20your%20platform%20with%20the%20R250%2Fmonth%20subscription.%20Could%20we%20chat%3F" target="_blank" class="btn btn-wa"><i class="fab fa-whatsapp"></i> +27 83 123 4567</a>
+      </div>
+
+      <!-- Call / Phone card -->
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+        <h3>Call us</h3>
+        <div class="action-line">Speak directly to a partner manager</div>
+        <a href="tel:+27181234567" class="btn btn-call"><i class="fas fa-phone"></i> +27 18 123 4567</a>
+      </div>
     </div>
 
-    <!-- registration form with profile photo, cover, description -->
-    <div class="register-card">
-      <div class="section-title"><i class="fas fa-address-book"></i> Provider information</div>
-      <form onsubmit="event.preventDefault(); alert('Thank you, provider! (Demo) – Your registration has been received. We’ll review your profile and contact you within 24h.');">
-        <!-- basic contact info -->
-        <div class="form-row">
-          <div class="form-group">
-            <label>Provider / business name *</label>
-            <input type="text" placeholder="e.g. Villa Bravado, Roosmaryn Guesthouse" required>
-          </div>
-          <div class="form-group">
-            <label>Your name (contact person) *</label>
-            <input type="text" placeholder="e.g. Thabo Ndlovu" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label><i class="fas fa-phone-alt" style="color: var(--deep-green); margin-right: 5px;"></i> Phone number *</label>
-            <input type="tel" placeholder="+27 18 123 4567" required>
-          </div>
-          <div class="form-group">
-            <label><i class="fab fa-whatsapp" style="color: #25D366; margin-right: 5px;"></i> WhatsApp number *</label>
-            <input type="tel" placeholder="+27 83 123 4567" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label><i class="fas fa-envelope" style="color: var(--deep-green);"></i> Email address *</label>
-            <input type="email" placeholder="info@example.co.za" required>
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-globe"></i> Website (optional)</label>
-            <input type="url" placeholder="https://">
-          </div>
-        </div>
-
-        <!-- property type checkboxes -->
-        <div style="margin: 30px 0 20px;">
-          <label style="font-weight: 600; color: var(--off-black); display: block; margin-bottom: 18px; font-size: 1.1rem;"><i class="fas fa-door-open" style="color: var(--deep-green); margin-right: 10px;"></i> What type of property do you rent out? (select all that apply)</label>
-          <div class="property-types">
-            <label class="type-item"><input type="checkbox"> <span>Student accommodation</span></label>
-            <label class="type-item"><input type="checkbox"> <span>B&B / couples retreat</span></label>
-            <label class="type-item"><input type="checkbox"> <span>Guesthouse / travel stays</span></label>
-            <label class="type-item"><input type="checkbox"> <span>Flats / apartments</span></label>
-            <label class="type-item"><input type="checkbox"> <span>Houses / self-catering</span></label>
-            <label class="type-item"><input type="checkbox"> <span>Other</span></label>
-          </div>
-        </div>
-
-        <!-- NEW: Description field (service & mission) -->
-        <div class="form-group">
-          <label><i class="fas fa-align-left" style="color: var(--deep-green); margin-right: 8px;"></i> Describe your service & mission *</label>
-          <textarea placeholder="Tell potential renters about your philosophy, what makes your accommodation special, your mission as a provider – e.g. 'We strive to offer safe, affordable housing with a friendly community feel...'" required></textarea>
-        </div>
-
-        <!-- NEW: Profile photo and cover upload -->
-        <div style="margin: 35px 0 15px;">
-          <label style="font-weight: 600; color: var(--off-black); display: block; margin-bottom: 20px; font-size: 1.1rem;"><i class="fas fa-camera" style="color: var(--deep-green); margin-right: 10px;"></i> Profile images (as seen on your card)</label>
-          <div class="upload-grid">
-            <!-- Profile photo (floating circle) -->
-            <div class="upload-area" onclick="alert('Demo: profile photo upload would open')">
-              <i class="fas fa-user-circle"></i>
-              <p>Upload profile photo</p>
-              <div class="upload-note">Will appear as floating circle on card. Square image, min 400x400px.</div>
-              <span class="preview-hint"><i class="fas fa-eye"></i> preview: rounded</span>
-            </div>
-            <!-- Cover photo (card background) -->
-            <div class="upload-area" onclick="alert('Demo: cover photo upload would open')">
-              <i class="fas fa-image"></i>
-              <p>Upload cover photo</p>
-              <div class="upload-note">This is the main image at the top of your card. Landscape, min 1200x600px.</div>
-              <span class="preview-hint"><i class="fas fa-eye"></i> preview: square edges</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- optional extra info (short) -->
-        <div class="form-group">
-          <label>Additional info (optional) – e.g. areas you serve, unique features</label>
-          <input type="text" placeholder="e.g. Near NWU, pet-friendly options, secure parking...">
-        </div>
-
-        <!-- verification / terms -->
-        <div class="verify-item">
-          <input type="checkbox" id="verify" required>
-          <label for="verify">I confirm that I am a legitimate rental provider in Potchefstroom and that the information provided is accurate. I understand PotchAcco will display my profile photo, cover image, and description in my listing.</label>
-        </div>
-
-        <!-- submit button -->
-        <button type="submit" class="btn-primary"><i class="fas fa-check-circle"></i> Register as provider</button>
-        <div class="form-note">
-          <i class="fas fa-clock" style="margin-right: 6px;"></i> After registration we’ll review your profile and activate it within 24–48 hours. Your photos and description will appear on your public provider card.
-        </div>
-      </form>
+    <!-- response time note -->
+    <div class="response-note">
+      <i class="fas fa-clock"></i> We typically respond within 2 hours during business days.
     </div>
 
-    <!-- why register (benefits) -->
-    <div class="benefits-strip">
-      <div class="benefit-item"><i class="fas fa-bullhorn"></i> Free exposure</div>
-      <div class="benefit-item"><i class="fas fa-whatsapp"></i> Direct enquiries</div>
-      <div class="benefit-item"><i class="fas fa-check-circle"></i> "Vetted provider" badge</div>
-      <div class="benefit-item"><i class="fas fa-user-circle"></i> Profile with photo</div>
+    <!-- why list with us / benefits (updated with R250 subscription) -->
+    <div class="info-panel">
+      <h2><i class="fas fa-star"></i> Why list with PotchAcco?</h2>
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <i class="fas fa-users"></i>
+          <p><strong>5,000+ monthly visitors</strong> — students and locals looking for accommodation.</p>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-mobile-alt"></i>
+          <p><strong>Premium profile page</strong> like Villa Bravado's. Showcase your properties with photos.</p>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-bolt"></i>
+          <p><strong>Quick setup</strong> — we’ll help you get listed and live within 24h.</p>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-check-circle"></i>
+          <p><strong>Flat R250/month</strong> — one simple subscription, no commission fees.</p>
+        </div>
+      </div>
+      
+      <!-- explicit subscription note -->
+      <div class="subscription-note">
+        <i class="fas fa-info-circle"></i> <strong>Membership model:</strong> R250 per month per provider. Cancel anytime. You get a full profile page, property listings, and direct contact with tenants.
+      </div>
     </div>
 
-    <!-- short explanation -->
-    <div style="background: var(--light-green); padding: 40px; margin: 30px 0 60px; text-align: center; border: 1px solid var(--border-light);">
-      <i class="fas fa-handshake" style="font-size: 3rem; color: var(--deep-green); margin-bottom: 20px;"></i>
-      <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 15px;">Your story matters</h2>
-      <p style="max-width: 600px; margin: 0 auto; color: #2c4a3a; font-size: 1.1rem;">With a profile photo, cover image and description, you build trust before the first message. Renters connect with real people, not just listings.</p>
+    <!-- alternative contact / simple form note (demo) -->
+    <div class="info-panel" style="padding: 30px 40px; text-align: center;">
+      <i class="fas fa-handshake" style="font-size: 3rem; color: var(--deep-green); margin-bottom: 16px;"></i>
+      <h3 style="font-size: 2rem; margin-bottom: 12px;">Prefer a callback?</h3>
+      <p style="font-size: 1.2rem; color: #3e3e3e; max-width: 600px; margin: 0 auto 20px;">Drop your number and we’ll call you within the hour. (Demo: just use one of the methods above)</p>
+      <!-- purely decorative: disabled input to keep demo clean -->
+      <div style="display: flex; gap: 12px; max-width: 500px; margin: 20px auto; flex-wrap: wrap; justify-content: center;">
+        <input type="text" placeholder="Your phone number" style="padding: 16px 20px; border-radius: 60px; border: 2px solid var(--border-light); flex: 1; min-width: 200px; font-size: 1rem;" disabled>
+        <button style="background: var(--deep-green); color: white; border: none; padding: 16px 36px; border-radius: 60px; font-weight: 600; font-size: 1rem; opacity: 0.5; cursor: not-allowed;">Request (demo)</button>
+      </div>
+      <p style="color: #aaa; font-size: 0.9rem;"><i class="fas fa-lock"></i> This is a demo interface — please use email/WhatsApp/call buttons above.</p>
     </div>
 
     <!-- footer (identical) -->
-    <div class="footer">
-      <div class="footer-col">
-        <div class="logo" style="font-size: 2rem;">PotchAcco<span>.</span></div>
-        <p>Your single destination for every rental in Potchefstroom. Student, travel, love — we’ve got it.</p>
-        <div class="social">
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-x-twitter"></i>
-          <i class="fab fa-linkedin-in"></i>
-        </div>
-      </div>
-      <div class="footer-links">
-        <div>
-          <a href="#">Explore</a>
-          <a href="#">Student housing</a>
-          <a href="#">B&B / Guesthouses</a>
-          <a href="#">Travel stays</a>
-          <a href="#">All providers</a>
-        </div>
-        <div>
-          <a href="#">Company</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-          <a href="#" style="font-weight: 600; color: var(--deep-green);">List your property</a>
-          <a href="#">Trust & safety</a>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <p style="text-align: center; color: #aaa; padding-bottom: 30px;">© 2025 PotchAcco — a Stacguru solution for Potchefstroom</p>
-
-  </div> <!-- container end -->
+     {% include "footer.html" %}
 </body>
 </html>

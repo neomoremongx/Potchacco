@@ -440,16 +440,7 @@
 <body>
   <div class="container">
     <!-- nav -->
-    <nav class="navbar">
-      <div class="logo">PotchAcco<span>.</span></div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="#" style="font-weight: 700; color: var(--deep-green);">Rental Providers</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </div>
-      <a href="#" class="contact-btn">List your property</a>
-    </nav>
+     {% include "nav.html" %}
 
     <!-- page title & filter -->
     <div class="page-header">
@@ -748,35 +739,6 @@
     </div>
 
     <!-- footer -->
-    <div class="footer">
-      <div class="footer-col">
-        <div class="logo" style="font-size: 2rem;">PotchAcco<span>.</span></div>
-        <p>Your single destination for every rental in Potchefstroom. Student, travel, love — we’ve got it.</p>
-        <div class="social">
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-x-twitter"></i>
-          <i class="fab fa-linkedin-in"></i>
-        </div>
-      </div>
-      <div class="footer-links">
-        <div>
-          <a href="#">Explore</a>
-          <a href="#">Student housing</a>
-          <a href="#">B&B / Guesthouses</a>
-          <a href="#">Travel stays</a>
-          <a href="#">All providers</a>
-        </div>
-        <div>
-          <a href="#">Company</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-          <a href="#">List your property</a>
-          <a href="#">Trust & safety</a>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <p style="text-align: center; color: #aaa; padding-bottom: 30px;">© 2025 PotchAcco — premium real estate showcase</p>
-  </div>
+     {% include "footer.html" %}
 </body>
 </html>
