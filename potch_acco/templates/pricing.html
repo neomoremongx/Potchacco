@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing · PotchAcco | affordable R250/month listing</title>
+  <!-- Font & icons (simple, consistent) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1e1e1e;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    :root {
+      --deep-green: #1e4a3b;
+      --accent-green: #2c6e4f;
+      --light-green: #e8f3ed;
+      --pure-black: #0a0a0a;
+      --off-black: #222222;
+      --pure-white: #ffffff;
+      --border-light: #e0e7e3;
+      --card-shadow: 0 20px 30px -10px rgba(0, 40, 20, 0.1);
+    }
+
+    /* navbar (simple) */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      color: var(--deep-green);
+    }
+    .logo span {
+      color: var(--off-black);
+      font-weight: 300;
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      font-weight: 500;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* pricing header */
+    .pricing-header {
+      text-align: center;
+      padding: 60px 0 20px;
+    }
+    .pricing-header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--pure-black);
+      margin-bottom: 16px;
+    }
+    .pricing-header .accent {
+      color: var(--deep-green);
+      border-bottom: 3px solid var(--deep-green);
+      padding-bottom: 4px;
+    }
+    .pricing-header p {
+      font-size: 1.2rem;
+      color: #4a4a4a;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* pricing card (centered, simple) */
+    .pricing-card {
+      max-width: 480px;
+      margin: 40px auto 60px;
+      background: var(--pure-white);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--card-shadow);
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .price-tag {
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--deep-green);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .price-period {
+      font-size: 1.2rem;
+      color: #6b8b7a;
+      margin-bottom: 30px;
+    }
+    .price-description {
+      font-size: 1.1rem;
+      color: #3e3e3e;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed var(--border-light);
+    }
+
+    /* feature list */
+    .feature-list {
+      list-style: none;
+      margin: 30px 0;
+      text-align: left;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+      color: #2d4a3a;
+    }
+    .feature-list i {
+      color: var(--deep-green);
+      font-size: 1.3rem;
+      width: 28px;
+      text-align: center;
+    }
+
+    /* cta button */
+    .pricing-cta {
+      background: var(--deep-green);
+      color: white;
+      border: none;
+      padding: 18px 32px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.15s;
+      width: 100%;
+      border-radius: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      margin: 20px 0 10px;
+    }
+    .pricing-cta:hover {
+      background: #15382c;
+    }
+
+    /* footnote */
+    .footnote {
+      text-align: center;
+      color: #7c9c8a;
+      font-size: 0.95rem;
+      margin-top: 20px;
+    }
+
+    /* simple footer */
+    .footer {
+      padding: 40px 0 30px;
+      color: #5c5c5c;
+      border-top: 1px solid var(--border-light);
+      text-align: center;
+    }
+    .footer .logo {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- simple nav -->
+    <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Providers</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+
+    <!-- pricing header -->
+    <div class="pricing-header">
+      <h1>Simple, <span class="accent">affordable</span> pricing</h1>
+      <p>One low monthly rate. No hidden fees, no commission.</p>
+    </div>
+
+    <!-- main pricing card -->
+    <div class="pricing-card">
+      <div class="price-tag">R250</div>
+      <div class="price-period">per month</div>
+      <div class="price-description">
+        <i class="fas fa-home" style="color: var(--deep-green); margin-right: 6px;"></i> 
+        per rental provider listing
+      </div>
+
+      <!-- features -->
+      <ul class="feature-list">
+        <li><i class="fas fa-check-circle"></i> Full provider profile with bio & mission</li>
+        <li><i class="fas fa-check-circle"></i> Profile photo + cover image</li>
+        <li><i class="fas fa-check-circle"></i> Direct contact details (phone, WhatsApp, email)</li>
+        <li><i class="fas fa-check-circle"></i> Portfolio showcase – list multiple properties</li>
+        <li><i class="fas fa-check-circle"></i> "Vetted provider" badge</li>
+        <li><i class="fas fa-check-circle"></i> Edit your profile anytime</li>
+        <li><i class="fas fa-check-circle"></i> No commission on enquiries</li>
+      </ul>
+
+      <!-- call to action -->
+      <a href="#" class="pricing-cta" onclick="alert('Redirect to Get Listed page – demo')">
+        <i class="fas fa-arrow-right"></i> Get listed now
+      </a>
+
+      <!-- small note -->
+      <div class="footnote">
+        <i class="fas fa-shield-alt"></i> Cancel anytime · No long-term contract
+      </div>
+    </div>
+
+    <!-- extra info / guarantee -->
+    <div style="text-align: center; margin: 30px 0 50px;">
+      <p style="color: #5a7a6a;">All prices include VAT. You only pay for the months you're listed.</p>
+    </div>
+
+    <!-- simple footer -->
+    <div class="footer">
+      <div class="logo">PotchAcco<span>.</span></div>
+      <p style="margin: 15px 0;">© 2025 PotchAcco — R250/month provider listing</p>
+    </div>
+  </div>
+</body>
+</html>

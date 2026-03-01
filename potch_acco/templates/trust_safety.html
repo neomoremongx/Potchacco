@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trust & safety · PotchAcco | stay secure</title>
+  <!-- Font & icons (same across all pages) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- global / nav / footer styles (identical to other pages) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1e1e1e;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    :root {
+      --deep-green: #1e4a3b;
+      --accent-green: #2c6e4f;
+      --light-green: #e8f3ed;
+      --pure-black: #0a0a0a;
+      --off-black: #222222;
+      --pure-white: #ffffff;
+      --border-light: #e0e7e3;
+      --card-shadow: 0 20px 30px -10px rgba(0, 40, 20, 0.15);
+    }
+
+    /* navbar (identical) */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      color: var(--deep-green);
+    }
+    .logo span {
+      color: var(--off-black);
+      font-weight: 300;
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      font-weight: 500;
+      color: var(--off-black);
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .contact-btn {
+      background: var(--pure-black);
+      color: var(--pure-white) !important;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .contact-btn:hover {
+      background: var(--deep-green);
+    }
+
+    /* page header */
+    .trust-header {
+      padding: 60px 0 30px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .trust-header h1 {
+      font-size: 3.3rem;
+      font-weight: 700;
+      color: var(--pure-black);
+      margin-bottom: 20px;
+    }
+    .trust-header .accent {
+      color: var(--deep-green);
+      border-bottom: 3px solid var(--deep-green);
+      padding-bottom: 4px;
+    }
+    .trust-header p {
+      font-size: 1.2rem;
+      color: #4a4a4a;
+      font-weight: 300;
+    }
+
+    /* intro card */
+    .trust-intro {
+      background: var(--light-green);
+      padding: 48px;
+      margin: 20px 0 40px;
+      border: 1px solid var(--border-light);
+      font-size: 1.2rem;
+      text-align: center;
+      color: #1d3b2f;
+    }
+    .trust-intro i {
+      color: var(--deep-green);
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    /* grid for trust pillars */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 50px 0;
+    }
+    .pillar-card {
+      background: var(--pure-white);
+      border: 1px solid var(--border-light);
+      padding: 38px 30px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .pillar-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--card-shadow);
+      border-color: var(--deep-green);
+    }
+    .pillar-icon {
+      font-size: 2.8rem;
+      color: var(--deep-green);
+      margin-bottom: 20px;
+    }
+    .pillar-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--pure-black);
+      margin-bottom: 16px;
+    }
+    .pillar-text {
+      color: #4a4a4a;
+      font-size: 1rem;
+    }
+
+    /* detailed sections */
+    .detail-section {
+      margin: 60px 0;
+    }
+    .detail-block {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .detail-block:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .detail-icon {
+      flex: 0 0 100px;
+      font-size: 3.5rem;
+      color: var(--deep-green);
+    }
+    .detail-content {
+      flex: 1;
+      min-width: 300px;
+    }
+    .detail-content h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--pure-black);
+      margin-bottom: 20px;
+    }
+    .detail-content p {
+      font-size: 1.1rem;
+      color: #3e3e3e;
+      margin-bottom: 20px;
+      max-width: 700px;
+    }
+    .detail-content ul {
+      list-style: none;
+    }
+    .detail-content li {
+      margin-bottom: 14px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .detail-content li i {
+      color: var(--deep-green);
+      font-size: 1.3rem;
+      margin-top: 3px;
+      min-width: 28px;
+    }
+
+    /* warning / alert box */
+    .alert-box {
+      background: #fff6e8;
+      border-left: 6px solid #e67e22;
+      padding: 32px 36px;
+      margin: 40px 0 50px;
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .alert-box i {
+      font-size: 3.2rem;
+      color: #e67e22;
+    }
+    .alert-box p {
+      font-size: 1.2rem;
+      color: #5a3e1a;
+      flex: 1;
+    }
+    .alert-box a {
+      color: var(--deep-green);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    /* cta banner */
+    .trust-cta {
+      background: var(--deep-green);
+      color: white;
+      padding: 50px 48px;
+      margin: 50px 0 60px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .trust-cta h3 {
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
+    .trust-cta .cta-link {
+      background: white;
+      color: var(--deep-green);
+      padding: 16px 36px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-decoration: none;
+      border-radius: 0px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* footer (exact same) */
+    .footer {
+      padding: 40px 0 60px;
+      color: #5c5c5c;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .footer-col p {
+      max-width: 260px;
+      margin: 20px 0;
+    }
+    .social i {
+      color: var(--deep-green);
+      font-size: 1.6rem;
+      margin-right: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 80px;
+    }
+    .footer-links a {
+      display: block;
+      color: #5c5c5c;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .footer-links a:first-child {
+      font-weight: 600;
+      color: var(--pure-black);
+      margin-bottom: 20px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-light);
+      margin: 10px 0 30px;
+    }
+
+    @media (max-width: 700px) {
+      .detail-block { flex-direction: column !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- nav (same as all pages) -->
+    <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      <div class="nav-links">
+        <a href="thehome.html">Home</a>
+        <a href="#">Rental Providers</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+      <a href="#" class="contact-btn">Get Listed</a>
+    </nav>
+
+    <!-- page header -->
+    <div class="trust-header">
+      <h1>Trust & <span class="accent">safety</span></h1>
+      <p>Your peace of mind is our foundation. We build PotchAcco so you can focus on finding the right place – safely.</p>
+    </div>
+
+    <!-- intro statement -->
+    <div class="trust-intro">
+      <i class="fas fa-shield-heart"></i>
+      <p><strong>PotchAcco is a Stacguru initiative.</strong> We don't handle payments or contracts – we simply connect you directly with verified local providers. Trust is built on transparency, vetting, and clear communication.</p>
+    </div>
+
+    <!-- 4 pillars (quick overview) -->
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon"><i class="fas fa-user-check"></i></div>
+        <div class="pillar-title">Provider vetting</div>
+        <div class="pillar-text">Every landlord, guesthouse or residence manager is manually verified by our team. We confirm identity, physical presence in Potch, and basic reliability.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon"><i class="fas fa-whatsapp"></i></div>
+        <div class="pillar-title">Direct contact</div>
+        <div class="pillar-text">We never intermediate your conversations. You call, WhatsApp or email the provider directly – no hidden forms, no data mining.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon"><i class="fas fa-eye"></i></div>
+        <div class="pillar-title">Real photos, real people</div>
+        <div class="pillar-text">Profile photos and cover images are uploaded by the provider. We encourage authentic imagery – what you see is what you get.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon"><i class="fas fa-star"></i></div>
+        <div class="pillar-title">Community ratings</div>
+        <div class="pillar-text">Ratings come from real tenants. They help you gauge reliability before reaching out.</div>
+      </div>
+    </div>
+
+    <!-- detailed trust & safety sections -->
+    <div class="detail-section">
+      <!-- 1. verification process -->
+      <div class="detail-block">
+        <div class="detail-icon"><i class="fas fa-clipboard-list"></i></div>
+        <div class="detail-content">
+          <h2>How we verify providers</h2>
+          <p>Every provider listed on PotchAcco goes through a manual check by the Stacguru team. We don't rely on algorithms.</p>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> <strong>Business/ID check:</strong> we ask for a company registration or ID to confirm identity.</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Location proof:</strong> provider must demonstrate they operate in Potchefstroom (utility bill, lease, or site visit).</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Active contact:</strong> we test phone and WhatsApp numbers before activation.</li>
+            <li><i class="fas fa-check-circle"></i> <strong>Ongoing monitoring:</strong> if users report unresponsive or inaccurate listings, we re-verify or remove the provider.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. your safety as a renter -->
+      <div class="detail-block">
+        <div class="detail-icon"><i class="fas fa-user-shield"></i></div>
+        <div class="detail-content">
+          <h2>Staying safe while renting</h2>
+          <p>While we vet providers, it's important to stay alert when making any rental agreement. Here are our tips:</p>
+          <ul>
+            <li><i class="fas fa-lightbulb"></i> <strong>Always view the property first</strong> – never pay a deposit without seeing the room or house.</li>
+            <li><i class="fas fa-lightbulb"></i> <strong>Use the contact details on the card</strong> – if someone contacts you via a different number, it might be a scam.</li>
+            <li><i class="fas fa-lightbulb"></i> <strong>Get a written lease</strong> – even for short stays, a simple agreement protects both sides.</li>
+            <li><i class="fas fa-lightbulb"></i> <strong>Never pay via untraceable methods</strong> – prefer bank transfers with reference, not cash or gift cards.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. provider responsibilities -->
+      <div class="detail-block">
+        <div class="detail-icon"><i class="fas fa-handshake"></i></div>
+        <div class="detail-content">
+          <h2>What we expect from providers</h2>
+          <p>Being listed on PotchAcco comes with a commitment to honesty and responsiveness.</p>
+          <ul>
+            <li><i class="fas fa-phone-alt"></i> <strong>Respond promptly:</strong> aim to answer calls or WhatsApp messages within 24h.</li>
+            <li><i class="fas fa-camera"></i> <strong>Keep photos accurate:</strong> update cover/profile images if the property changes significantly.</li>
+            <li><i class="fas fa-ban"></i> <strong>No discrimination:</strong> we welcome everyone – providers must comply with South Africa's equality laws.</li>
+            <li><i class="fas fa-envelope"></i> <strong>Report unavailability:</strong> if units are full, let us know so we can update your listing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4. reporting & support -->
+      <div class="detail-block">
+        <div class="detail-icon"><i class="fas fa-flag"></i></div>
+        <div class="detail-content">
+          <h2>Report a concern</h2>
+          <p>If you encounter a listing that seems fake, a provider who is unresponsive, or any suspicious behaviour, tell us immediately. We take every report seriously.</p>
+          <ul>
+            <li><i class="fas fa-envelope"></i> Email us at <a href="mailto:safety@potchacco.co.za" style="color: var(--deep-green);">safety@potchacco.co.za</a></li>
+            <li><i class="fab fa-whatsapp"></i> WhatsApp +27 83 123 4567 (safety line)</li>
+            <li><i class="fas fa-comment"></i> Use the contact form on our website – mark it "URGENT – trust issue"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- warning / scam alert -->
+    <div class="alert-box">
+      <i class="fas fa-exclamation-triangle"></i>
+      <p><strong>Beware of scams:</strong> PotchAcco will never ask you for money, banking details, or payments via the site. We only display contact info. If anyone impersonating PotchAcco contacts you, <a href="#">report it immediately</a>.</p>
+    </div>
+
+    <!-- FAQ teaser (short) -->
+    <div style="margin: 40px 0;">
+      <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 30px;"><i class="fas fa-question-circle" style="color: var(--deep-green); margin-right: 15px;"></i> Common trust questions</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 30px;">
+        <div style="background: #fafdfb; padding: 28px;">
+          <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Do you guarantee the properties?</h3>
+          <p>We verify providers but we don't inspect each unit. Always view before committing.</p>
+        </div>
+        <div style="background: #fafdfb; padding: 28px;">
+          <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Can I trust the ratings?</h3>
+          <p>Ratings come from confirmed tenants. We moderate for fake reviews.</p>
+        </div>
+        <div style="background: #fafdfb; padding: 28px;">
+          <h3 style="font-size: 1.5rem; margin-bottom: 10px;">What if a provider is a scam?</h3>
+          <p>We delist immediately upon proof and may assist with legal advice.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- final CTA -->
+    <div class="trust-cta">
+      <h3><i class="fas fa-shield-alt"></i> Still have concerns?</h3>
+      <a href="#" class="cta-link" onclick="alert('Contact our safety team – demo')">Talk to us <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <!-- footer (identical) -->
+    <div class="footer">
+      <div class="footer-col">
+        <div class="logo" style="font-size: 2rem;">PotchAcco<span>.</span></div>
+        <p>Your single destination for every rental in Potchefstroom. Student, travel, love — we’ve got it.</p>
+        <div class="social">
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-x-twitter"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div>
+          <a href="#">Explore</a>
+          <a href="#">Student housing</a>
+          <a href="#">B&B / Guesthouses</a>
+          <a href="#">Travel stays</a>
+          <a href="#">All providers</a>
+        </div>
+        <div>
+          <a href="#">Company</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">List your property</a>
+          <a href="#" style="font-weight: 600; color: var(--deep-green);">Trust & safety</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p style="text-align: center; color: #aaa; padding-bottom: 30px;">© 2025 PotchAcco — a Stacguru solution for Potchefstroom</p>
+
+  </div> <!-- container end -->
+</body>
+</html>

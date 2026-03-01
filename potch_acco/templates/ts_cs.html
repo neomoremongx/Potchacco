@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms & conditions · PotchAcco</title>
+  <!-- Font & icons (same across all pages) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- global / nav / footer styles (identical to other pages) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1e1e1e;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    :root {
+      --deep-green: #1e4a3b;
+      --accent-green: #2c6e4f;
+      --light-green: #e8f3ed;
+      --pure-black: #0a0a0a;
+      --off-black: #222222;
+      --pure-white: #ffffff;
+      --border-light: #e0e7e3;
+      --card-shadow: 0 20px 30px -10px rgba(0, 40, 20, 0.15);
+    }
+
+    /* navbar (identical) */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      color: var(--deep-green);
+    }
+    .logo span {
+      color: var(--off-black);
+      font-weight: 300;
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      font-weight: 500;
+      color: var(--off-black);
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .contact-btn {
+      background: var(--pure-black);
+      color: var(--pure-white) !important;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .contact-btn:hover {
+      background: var(--deep-green);
+    }
+
+    /* page header */
+    .terms-header {
+      padding: 60px 0 30px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .terms-header h1 {
+      font-size: 3.3rem;
+      font-weight: 700;
+      color: var(--pure-black);
+      margin-bottom: 20px;
+    }
+    .terms-header .accent {
+      color: var(--deep-green);
+      border-bottom: 3px solid var(--deep-green);
+      padding-bottom: 4px;
+    }
+    .terms-header p {
+      font-size: 1.2rem;
+      color: #4a4a4a;
+      font-weight: 300;
+    }
+    .last-updated {
+      margin-top: 15px;
+      font-size: 0.95rem;
+      color: #7e9c8a;
+    }
+
+    /* terms content card */
+    .terms-card {
+      background: var(--pure-white);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--card-shadow);
+      padding: 60px 56px;
+      margin: 30px 0 60px;
+    }
+    @media (max-width: 700px) {
+      .terms-card { padding: 35px 25px; }
+    }
+
+    /* terms sections */
+    .terms-section {
+      margin-bottom: 48px;
+    }
+    .terms-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--pure-black);
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 2px solid var(--light-green);
+      padding-bottom: 12px;
+    }
+    .terms-section h2 i {
+      color: var(--deep-green);
+      font-size: 2.2rem;
+    }
+    .terms-section h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--off-black);
+      margin: 30px 0 15px;
+    }
+    .terms-section p {
+      font-size: 1.05rem;
+      color: #3e3e3e;
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+    .terms-section ul {
+      list-style: none;
+      margin: 20px 0;
+    }
+    .terms-section li {
+      margin-bottom: 14px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      font-size: 1.05rem;
+      color: #3e3e3e;
+    }
+    .terms-section li i {
+      color: var(--deep-green);
+      font-size: 1.2rem;
+      margin-top: 3px;
+      min-width: 24px;
+    }
+    .terms-section a {
+      color: var(--deep-green);
+      font-weight: 500;
+      text-decoration: underline;
+    }
+    .legal-highlight {
+      background: var(--light-green);
+      padding: 24px 28px;
+      border-left: 6px solid var(--deep-green);
+      margin: 30px 0;
+    }
+
+    /* footer (exact same) */
+    .footer {
+      padding: 40px 0 60px;
+      color: #5c5c5c;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .footer-col p {
+      max-width: 260px;
+      margin: 20px 0;
+    }
+    .social i {
+      color: var(--deep-green);
+      font-size: 1.6rem;
+      margin-right: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 80px;
+    }
+    .footer-links a {
+      display: block;
+      color: #5c5c5c;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .footer-links a:first-child {
+      font-weight: 600;
+      color: var(--pure-black);
+      margin-bottom: 20px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-light);
+      margin: 10px 0 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- nav (same as all pages) -->
+    <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      <div class="nav-links">
+        <a href="thehome.html">Home</a>
+        <a href="#">Rental Providers</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+      <a href="#" class="contact-btn">Get Listed</a>
+    </nav>
+
+    <!-- page header -->
+    <div class="terms-header">
+      <h1>Terms & <span class="accent">conditions</span></h1>
+      <p>Please read these terms carefully before using PotchAcco. By accessing or using our platform, you agree to be bound by this agreement.</p>
+      <div class="last-updated"><i class="far fa-calendar-alt"></i> Last updated: 1 March 2025</div>
+    </div>
+
+    <!-- main terms content -->
+    <div class="terms-card">
+      <!-- 1. introduction -->
+      <div class="terms-section">
+        <h2><i class="fas fa-file-contract"></i> 1. Introduction</h2>
+        <p>PotchAcco (operated by <strong>Stacguru IT Solutions</strong>, Potchefstroom) is a digital showcase that connects accommodation seekers with rental providers. We are a platform for <strong>direct contact</strong> – we do not own, manage, or lease any property, nor do we process payments or contracts.</p>
+        <p>By using the website, you enter into this agreement with Stacguru. If you do not agree, please do not use PotchAcco.</p>
+      </div>
+
+      <!-- 2. definitions -->
+      <div class="terms-section">
+        <h2><i class="fas fa-book-open"></i> 2. Definitions</h2>
+        <ul>
+          <li><i class="fas fa-angle-right"></i> <strong>“Platform”</strong> – the PotchAcco website and any related services.</li>
+          <li><i class="fas fa-angle-right"></i> <strong>“Provider”</strong> – any person or business listing contact details and rental information.</li>
+          <li><i class="fas fa-angle-right"></i> <strong>“Seeker” / “you”</strong> – any person using the platform to find accommodation.</li>
+          <li><i class="fas fa-angle-right"></i> <strong>“Content”</strong> – all text, images, profile photos, and descriptions uploaded by providers.</li>
+        </ul>
+      </div>
+
+      <!-- 3. no brokerage or agency -->
+      <div class="terms-section">
+        <h2><i class="fas fa-handshake"></i> 3. No brokerage, agency, or payment processing</h2>
+        <p>PotchAcco is strictly an <strong>information platform</strong>. We are not a party to any rental agreement between seekers and providers. We do not:</p>
+        <ul>
+          <li><i class="fas fa-times-circle"></i> Collect rent, deposits, or any fees on behalf of providers.</li>
+          <li><i class="fas fa-times-circle"></i> Negotiate or advise on rental prices or terms.</li>
+          <li><i class="fas fa-times-circle"></i> Provide legal or financial advice.</li>
+          <li><i class="fas fa-times-circle"></i> Act as an agent, broker, or representative of any provider.</li>
+        </ul>
+        <div class="legal-highlight">
+          <i class="fas fa-exclamation-triangle" style="margin-right: 12px;"></i> Any transaction or agreement is solely between you and the provider. PotchAcco accepts no liability for disputes, damages, or losses arising from such agreements.
+        </div>
+      </div>
+
+      <!-- 4. provider terms -->
+      <div class="terms-section">
+        <h2><i class="fas fa-user-tie"></i> 4. Provider terms</h2>
+        <p>If you register as a provider, you agree to:</p>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Provide accurate and current contact details (phone, WhatsApp, email).</li>
+          <li><i class="fas fa-check-circle"></i> Upload only authentic images – profile photos must be of you or your authorised representative; cover images must depict your actual property.</li>
+          <li><i class="fas fa-check-circle"></i> Respond to enquiries in a timely and professional manner.</li>
+          <li><i class="fas fa-check-circle"></i> Notify PotchAcco if your contact details change or if you are no longer accepting new tenants.</li>
+          <li><i class="fas fa-check-circle"></i> Comply with all applicable South African laws, including the Rental Housing Act and consumer protection regulations.</li>
+        </ul>
+        <p><strong>Provider verification:</strong> We reserve the right to verify any provider by requesting business documents, ID, or proof of location. Failure to provide such proof may result in removal from the platform.</p>
+      </div>
+
+      <!-- 5. user obligations -->
+      <div class="terms-section">
+        <h2><i class="fas fa-users"></i> 5. Seeker / user obligations</h2>
+        <p>As a user seeking accommodation, you agree:</p>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> To use the contact details only for legitimate accommodation enquiries.</li>
+          <li><i class="fas fa-check-circle"></i> Not to misuse the platform for spam, advertising, or fraudulent purposes.</li>
+          <li><i class="fas fa-check-circle"></i> To treat providers with respect and engage in good faith.</li>
+          <li><i class="fas fa-check-circle"></i> To report any suspicious or inaccurate listings to PotchAcco.</li>
+        </ul>
+        <p>You are solely responsible for your interactions with providers. We recommend you view any property in person and sign a written lease before paying any money.</p>
+      </div>
+
+      <!-- 6. content & intellectual property -->
+      <div class="terms-section">
+        <h2><i class="fas fa-copyright"></i> 6. Content and intellectual property</h2>
+        <p>Providers retain ownership of their images and descriptions. By uploading content, you grant PotchAcco a non-exclusive, royalty-free license to display, modify for layout, and promote your listing on the platform and related marketing (e.g., social media highlights).</p>
+        <p>All platform code, design, and PotchAcco logo are property of Stacguru IT Solutions and may not be copied without permission.</p>
+      </div>
+
+      <!-- 7. disclaimer & limitation of liability -->
+      <div class="terms-section">
+        <h2><i class="fas fa-exclamation-circle"></i> 7. Disclaimer and limitation of liability</h2>
+        <p>PotchAcco provides the platform “as is” and makes no representations about the accuracy, reliability, or suitability of any provider listing. We do not guarantee that:</p>
+        <ul>
+          <li><i class="fas fa-angle-right"></i> All providers are fully verified at all times (though we strive to vet initially).</li>
+          <li><i class="fas fa-angle-right"></i> The platform will be uninterrupted or error-free.</li>
+          <li><i class="fas fa-angle-right"></i> Any property meets your expectations.</li>
+        </ul>
+        <p>To the maximum extent permitted by South African law, Stacguru / PotchAcco shall not be liable for any indirect, incidental, or consequential damages arising from your use of the platform or any interactions with providers.</p>
+        <div class="legal-highlight">
+          <strong>Total liability</strong> (if any) is limited to R500.
+        </div>
+      </div>
+
+      <!-- 8. reporting & takedown -->
+      <div class="terms-section">
+        <h2><i class="fas fa-flag"></i> 8. Reporting and takedown</h2>
+        <p>If you believe a listing is fraudulent, offensive, or violates these terms, please contact us immediately at <a href="mailto:abuse@potchacco.co.za">abuse@potchacco.co.za</a>. We will investigate and may remove the listing without prior notice.</p>
+      </div>
+
+      <!-- 9. changes to terms -->
+      <div class="terms-section">
+        <h2><i class="fas fa-edit"></i> 9. Changes to terms</h2>
+        <p>We may update these terms from time to time. Continued use of the platform after changes constitutes acceptance of the revised terms. Material changes will be notified via the website.</p>
+      </div>
+
+      <!-- 10. governing law -->
+      <div class="terms-section">
+        <h2><i class="fas fa-gavel"></i> 10. Governing law</h2>
+        <p>These terms are governed by the laws of the Republic of South Africa. Any disputes arising shall be submitted to the jurisdiction of the Magistrates' Court of Potchefstroom.</p>
+      </div>
+
+      <!-- 11. contact -->
+      <div class="terms-section">
+        <h2><i class="fas fa-envelope"></i> 11. Contact us</h2>
+        <p>For any questions regarding these terms, please reach out:</p>
+        <ul>
+          <li><i class="fas fa-envelope"></i> legal@potchacco.co.za</li>
+          <li><i class="fas fa-phone-alt"></i> +27 18 123 4567 (ask for legal/compliance)</li>
+          <li><i class="fas fa-building"></i> Stacguru IT Solutions, 12 Thabo Mbeki Drive, Potchefstroom, 2531</li>
+        </ul>
+      </div>
+
+      <!-- small acknowledgement line -->
+      <p style="margin-top: 50px; color: #aaa; font-size: 0.95rem; text-align: center;">By using PotchAcco you acknowledge that you have read and understood these terms.</p>
+    </div>
+
+    <!-- footer (identical) -->
+    <div class="footer">
+      <div class="footer-col">
+        <div class="logo" style="font-size: 2rem;">PotchAcco<span>.</span></div>
+        <p>Your single destination for every rental in Potchefstroom. Student, travel, love — we’ve got it.</p>
+        <div class="social">
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-x-twitter"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div>
+          <a href="#">Explore</a>
+          <a href="#">Student housing</a>
+          <a href="#">B&B / Guesthouses</a>
+          <a href="#">Travel stays</a>
+          <a href="#">All providers</a>
+        </div>
+        <div>
+          <a href="#">Company</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">List your property</a>
+          <a href="#">Trust & safety</a>
+          <a href="#" style="font-weight: 600; color: var(--deep-green);">Terms & conditions</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p style="text-align: center; color: #aaa; padding-bottom: 30px;">© 2025 PotchAcco — a Stacguru solution for Potchefstroom</p>
+
+  </div> <!-- container end -->
+</body>
+</html>

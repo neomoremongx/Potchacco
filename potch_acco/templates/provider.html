@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PotchAcco · Rental providers by category</title>
+  <!-- Font & icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1e1e1e;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    :root {
+      --deep-green: #1e4a3b;
+      --accent-green: #2c6e4f;
+      --light-green: #e8f3ed;
+      --pure-black: #0a0a0a;
+      --off-black: #222222;
+      --pure-white: #ffffff;
+      --border-light: #e0e7e3;
+      --card-shadow: 0 20px 30px -10px rgba(0, 40, 20, 0.15);
+    }
+    /* navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      color: var(--deep-green);
+    }
+    .logo span {
+      color: var(--off-black);
+      font-weight: 300;
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      font-weight: 500;
+      color: var(--off-black);
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .contact-btn {
+      background: var(--pure-black);
+      color: var(--pure-white) !important;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .contact-btn:hover {
+      background: var(--deep-green);
+    }
+
+    /* page header */
+    .page-header {
+      padding: 50px 0 20px;
+    }
+    .page-header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--pure-black);
+      margin-bottom: 16px;
+    }
+    .page-header .highlight {
+      color: var(--deep-green);
+      border-bottom: 3px solid var(--deep-green);
+      padding-bottom: 4px;
+    }
+    .page-header p {
+      font-size: 1.2rem;
+      color: #4a4a4a;
+      max-width: 700px;
+    }
+
+    /* filter bar (simple) */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      align-items: center;
+      padding: 24px 0 40px;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 40px;
+    }
+    .filter-label {
+      font-weight: 600;
+      color: var(--deep-green);
+      margin-right: 8px;
+    }
+    .filter-chip {
+      background: white;
+      border: 1.5px solid var(--border-light);
+      border-radius: 40px;
+      padding: 8px 24px;
+      font-weight: 500;
+      color: var(--off-black);
+      cursor: default;
+      transition: 0.1s;
+    }
+    .filter-chip.active {
+      background: var(--deep-green);
+      border-color: var(--deep-green);
+      color: white;
+    }
+    .filter-chip i {
+      margin-right: 8px;
+    }
+    .result-count {
+      margin-left: auto;
+      color: #5a5a5a;
+      font-weight: 400;
+    }
+
+    /* category group styling (like landing page) */
+    .category-group {
+      margin: 50px 0 40px;
+    }
+    .category-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--deep-green);
+      padding-bottom: 12px;
+      margin-bottom: 30px;
+    }
+    .category-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--pure-black);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .category-title i {
+      color: var(--deep-green);
+      font-size: 2rem;
+    }
+    .category-title-link {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .category-title-link:hover {
+      color: var(--deep-green);
+    }
+    .category-title-link:hover i {
+      transform: translateX(4px);
+      transition: transform 0.15s;
+    }
+    .view-all {
+      font-weight: 600;
+      color: var(--deep-green);
+      text-decoration: none;
+      border: 1.5px solid var(--deep-green);
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      transition: 0.15s;
+    }
+    .view-all:hover {
+      background: var(--deep-green);
+      color: white;
+    }
+
+    /* providers grid */
+    .providers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 36px;
+      margin-bottom: 40px;
+    }
+    /* provider card (with profile photo) */
+    .provider-card {
+      background: var(--pure-white);
+      border-radius: 0px;
+      overflow: visible;
+      box-shadow: 0 8px 24px rgba(0, 30, 10, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .provider-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 40px -15px rgba(30, 74, 59, 0.3);
+      border-color: var(--deep-green);
+    }
+    .profile-photo {
+      position: absolute;
+      top: 120px;
+      left: 22px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      object-fit: cover;
+      background: white;
+      z-index: 10;
+      transition: transform 0.2s;
+    }
+    .provider-card:hover .profile-photo {
+      transform: scale(1.05);
+    }
+    .card-img {
+      height: 170px;
+      background-color: #c0dbc8;
+      overflow: hidden;
+      border-radius: 0px;
+    }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+      border-radius: 0px;
+    }
+    .provider-card:hover .card-img img {
+      transform: scale(1.03);
+    }
+    .card-content {
+      padding: 50px 22px 26px 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .provider-name {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--pure-black);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .provider-type {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-green);
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      margin-bottom: 14px;
+    }
+    .provider-type i {
+      font-size: 1rem;
+    }
+    .provider-desc {
+      color: #5a5a5a;
+      font-weight: 400;
+      margin-bottom: 18px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 16px 0 20px;
+      background: var(--light-green);
+      padding: 16px 14px;
+      border-radius: 0px;
+      border: 1px solid #d0e2d6;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--off-black);
+      word-break: break-word;
+    }
+    .contact-item i {
+      width: 22px;
+      color: var(--deep-green);
+      font-size: 1.1rem;
+    }
+    .contact-item a {
+      color: var(--off-black);
+      text-decoration: none;
+      border-bottom: 1px dotted transparent;
+      transition: border-color 0.15s;
+    }
+    .contact-item a:hover {
+      border-bottom: 1px dotted var(--deep-green);
+      color: var(--deep-green);
+    }
+    .contact-item .fa-whatsapp {
+      color: #25D366;
+    }
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px dashed #ccdcd2;
+      padding-top: 16px;
+      margin: 8px 0 12px;
+    }
+    .units {
+      background: var(--light-green);
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--deep-green);
+    }
+    .rating i {
+      color: var(--deep-green);
+      margin-right: 4px;
+      font-size: 0.9rem;
+    }
+    .rating span {
+      font-weight: 500;
+      color: var(--off-black);
+    }
+    .profile-btn {
+      background: transparent;
+      border: 2px solid var(--deep-green);
+      color: var(--deep-green);
+      font-weight: 700;
+      padding: 14px 20px;
+      border-radius: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 1rem;
+      margin-top: 8px;
+      cursor: pointer;
+      transition: 0.15s;
+      width: 100%;
+    }
+    .profile-btn i {
+      font-size: 1.1rem;
+    }
+    .profile-btn:hover {
+      background: var(--deep-green);
+      color: white;
+    }
+
+    /* simple pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 40px 0 60px;
+    }
+    .page-item {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-light);
+      color: var(--off-black);
+      font-weight: 500;
+      cursor: default;
+    }
+    .page-item.active {
+      background: var(--deep-green);
+      border-color: var(--deep-green);
+      color: white;
+    }
+
+    /* footer */
+    .footer {
+      padding: 40px 0 60px;
+      color: #5c5c5c;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .footer-col p {
+      max-width: 260px;
+      margin: 20px 0;
+    }
+    .social i {
+      color: var(--deep-green);
+      font-size: 1.6rem;
+      margin-right: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 80px;
+    }
+    .footer-links a {
+      display: block;
+      color: #5c5c5c;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .footer-links a:first-child {
+      font-weight: 600;
+      color: var(--pure-black);
+      margin-bottom: 20px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-light);
+      margin: 10px 0 30px;
+    }
+
+    @media (max-width: 700px) {
+      .filter-bar { flex-direction: column; align-items: start; }
+      .result-count { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- nav -->
+    <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#" style="font-weight: 700; color: var(--deep-green);">Rental Providers</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+      <a href="#" class="contact-btn">List your property</a>
+    </nav>
+
+    <!-- page title & filter -->
+    <div class="page-header">
+      <h1>All <span class="highlight">rental providers</span> in Potchefstroom</h1>
+      <p>Student accommodation, B&Bs, guesthouses, apartments – listed by category.</p>
+    </div>
+
+    <!-- filter row (just for show) -->
+    <div class="filter-bar">
+      <span class="filter-label"><i class="fas fa-filter"></i> Jump to:</span>
+      <span class="filter-chip"><a href="#student" style="text-decoration: none; color: inherit;"><i class="fas fa-graduation-cap"></i> Student</a></span>
+      <span class="filter-chip"><a href="#bandb" style="text-decoration: none; color: inherit;"><i class="fas fa-heart"></i> B&B / couples</a></span>
+      <span class="filter-chip"><a href="#guesthouses" style="text-decoration: none; color: inherit;"><i class="fas fa-suitcase"></i> Guesthouses</a></span>
+      <span class="filter-chip"><a href="#flats" style="text-decoration: none; color: inherit;"><i class="fas fa-door-open"></i> Flats</a></span>
+      <span class="result-count"><i class="fas fa-building"></i> 12 providers</span>
+    </div>
+
+    <!-- ========== CATEGORY: STUDENT ACCOMMODATION ========== -->
+    <div id="student" class="category-group">
+      <div class="category-header">
+        <a href="/category/student" class="category-title-link" onclick="alert('Navigate to full student accommodation listing page'); return false;">
+          <div class="category-title">
+            <i class="fas fa-graduation-cap"></i> Student accommodation
+          </div>
+        </a>
+        <a href="/category/student" class="view-all" onclick="alert('View all student properties'); return false;">View all <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="providers-grid">
+        <!-- Villa Bravado (student) -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop" alt="manager" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1555852105-64f35c0c556b?q=80&w=1974&auto=format&fit=crop" alt="Villa Bravado" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Villa Bravado</div>
+            <div class="provider-type"><i class="fas fa-graduation-cap"></i> Student living</div>
+            <div class="provider-desc">Premium studios & shared flats 2min from NWU. Fiber, borehole water.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27181234567">+27 18 123 4567</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27831234567">+27 83 123 4567</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:res@villabravado.co.za">res@villabravado.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.villabravado.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">32 units</span><span class="rating"><i class="fas fa-star"></i> <span>4.8</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Villa Bravado')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- The Campus Hub (student) -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" alt="manager" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=2071&auto=format&fit=crop" alt="The Campus Hub" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">The Campus Hub</div>
+            <div class="provider-type"><i class="fas fa-graduation-cap"></i> Student</div>
+            <div class="provider-desc">Modern apartments with gym, study lounges, and roof terrace.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27184567890">+27 18 456 7890</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27844567890">+27 84 456 7890</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:leasing@campushub.co.za">leasing@campushub.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.campushub.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">88 units</span><span class="rating"><i class="fas fa-star"></i> <span>4.6</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for The Campus Hub')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- @Home Potch (student & traveler) — still belongs to student -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" alt="host" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1597200381847-30ec200eeb9a?q=80&w=1974&auto=format&fit=crop" alt="@Home Potch" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">@Home Potch</div>
+            <div class="provider-type"><i class="fas fa-graduation-cap"></i> Student & traveler</div>
+            <div class="provider-desc">Flexible leases, fully furnished, including hostel-style for backpackers.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27188901234">+27 18 890 1234</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27868901234">+27 86 890 1234</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:stay@athomepotch.co.za">stay@athomepotch.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.athomepotch.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">28 units</span><span class="rating"><i class="fas fa-star"></i> <span>4.2</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for @Home Potch')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- Huis Eikenhof (student) -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1480455624313-e29b44bbfde1?q=80&w=2070&auto=format&fit=crop" alt="manager" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1598928506909-30de9b7e6b6e?q=80&w=1974&auto=format&fit=crop" alt="Huis Eikenhof" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Huis Eikenhof</div>
+            <div class="provider-type"><i class="fas fa-graduation-cap"></i> Student residence</div>
+            <div class="provider-desc">Traditional residence, meals included, study groups.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27182349876">+27 18 234 9876</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27832349876">+27 83 234 9876</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@huiseikenhof.co.za">info@huiseikenhof.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.huiseikenhof.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">120 beds</span><span class="rating"><i class="fas fa-star"></i> <span>4.5</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Huis Eikenhof')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== CATEGORY: B&B & COUPLES RETREAT ========== -->
+    <div id="bandb" class="category-group">
+      <div class="category-header">
+        <a href="/category/bandb" class="category-title-link" onclick="alert('Navigate to full B&B / lovers page'); return false;">
+          <div class="category-title">
+            <i class="fas fa-heart"></i> B&B & couples retreat
+          </div>
+        </a>
+        <a href="/category/bandb" class="view-all" onclick="alert('View all B&Bs'); return false;">View all <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="providers-grid">
+        <!-- La Belle Nuit -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop" alt="innkeeper" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=2070&auto=format&fit=crop" alt="La Belle Nuit" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">La Belle Nuit</div>
+            <div class="provider-type"><i class="fas fa-heart"></i> B&B · couples</div>
+            <div class="provider-desc">Intimate suites with spa baths, vineyard views, perfect for weekends.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27183456789">+27 18 345 6789</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27823456789">+27 82 345 6789</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@labelle.co.za">info@labelle.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.labelle.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">6 suites</span><span class="rating"><i class="fas fa-star"></i> <span>4.7</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for La Belle Nuit')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- Ivy & Oak Manor -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop" alt="host" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop" alt="Ivy & Oak Manor" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Ivy & Oak Manor</div>
+            <div class="provider-type"><i class="fas fa-heart"></i> Boutique B&B</div>
+            <div class="provider-desc">Edwardian house, antique furnishings, private verandas.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27186789012">+27 18 678 9012</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27866789012">+27 86 678 9012</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:manor@ivyoak.co.za">manor@ivyoak.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.ivyoak.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">5 suites</span><span class="rating"><i class="fas fa-star"></i> <span>5.0</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Ivy & Oak Manor')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- Thabela Thula (B&B) -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?q=80&w=1974&auto=format&fit=crop" alt="host" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop" alt="Thabela Thula" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Thabela Thula</div>
+            <div class="provider-type"><i class="fas fa-heart"></i> B&B</div>
+            <div class="provider-desc">Bushveld atmosphere, hiking trails, bird watching.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27187894567">+27 18 789 4567</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27877894567">+27 87 789 4567</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@thabelathula.co.za">info@thabelathula.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.thabelathula.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">7 suites</span><span class="rating"><i class="fas fa-star"></i> <span>4.9</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Thabela Thula')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== CATEGORY: GUESTHOUSES & TRAVEL ========== -->
+    <div id="guesthouses" class="category-group">
+      <div class="category-header">
+        <a href="/category/guesthouses" class="category-title-link" onclick="alert('Navigate to full guesthouses page'); return false;">
+          <div class="category-title">
+            <i class="fas fa-suitcase"></i> Guesthouses & travel stays
+          </div>
+        </a>
+        <a href="/category/guesthouses" class="view-all" onclick="alert('View all guesthouses'); return false;">View all <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="providers-grid">
+        <!-- Roosmaryn Guesthouse -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=1998&auto=format&fit=crop" alt="manager" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop" alt="Roosmaryn Guesthouse" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Roosmaryn Guesthouse</div>
+            <div class="provider-type"><i class="fas fa-suitcase"></i> Guesthouse</div>
+            <div class="provider-desc">Charming garden cottages, secure parking, breakfast included.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27182345678">+27 18 234 5678</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27832345678">+27 83 234 5678</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:stay@roosmaryn.co.za">stay@roosmaryn.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.roosmaryn.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">12 rooms</span><span class="rating"><i class="fas fa-star"></i> <span>4.9</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Roosmaryn Guesthouse')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- Mooi Rivier Lodge -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" alt="host" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop" alt="Mooi Rivier Lodge" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Mooi Rivier Lodge</div>
+            <div class="provider-type"><i class="fas fa-suitcase"></i> Guesthouse</div>
+            <div class="provider-desc">Along the Mooi river, cozy stoep, lush garden, loads of character.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27185678901">+27 18 567 8901</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27855678901">+27 85 567 8901</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:bookings@mooirivier.co.za">bookings@mooirivier.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.mooirivier.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">10 rooms</span><span class="rating"><i class="fas fa-star"></i> <span>4.5</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Mooi Rivier Lodge')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- Sunridge B&B (guesthouse style) -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop" alt="owner" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=2025&auto=format&fit=crop" alt="Sunridge B&B" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Sunridge B&B</div>
+            <div class="provider-type"><i class="fas fa-suitcase"></i> Guesthouse</div>
+            <div class="provider-desc">Panoramic views, solar heated pool, near nature reserve.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27183451234">+27 18 345 1234</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27823451234">+27 82 345 1234</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:stay@sunridge.co.za">stay@sunridge.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.sunridge.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">8 rooms</span><span class="rating"><i class="fas fa-star"></i> <span>4.8</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Sunridge B&B')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== CATEGORY: FLATS & APARTMENTS ========== -->
+    <div id="flats" class="category-group">
+      <div class="category-header">
+        <a href="/category/apartments" class="category-title-link" onclick="alert('Navigate to full apartments page'); return false;">
+          <div class="category-title">
+            <i class="fas fa-door-open"></i> Flats & apartments
+          </div>
+        </a>
+        <a href="/category/apartments" class="view-all" onclick="alert('View all apartments'); return false;">View all <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="providers-grid">
+        <!-- Residentia Potch -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="agent" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1545324418-cc1e3fa86c52?q=80&w=2070&auto=format&fit=crop" alt="Residentia Potch" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Residentia Potch</div>
+            <div class="provider-type"><i class="fas fa-door-open"></i> Apartments</div>
+            <div class="provider-desc">Secure flats near CBD, prepaid electricity, pet friendly options.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27187890123">+27 18 789 0123</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27877890123">+27 87 789 0123</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@residentia.co.za">info@residentia.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.residentia.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">45 units</span><span class="rating"><i class="fas fa-star"></i> <span>4.4</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Residentia Potch')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+        <!-- Akasia Place (apartments) -->
+        <div class="provider-card">
+          <img class="profile-photo" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop" alt="manager" loading="lazy">
+          <div class="card-img"><img src="https://images.unsplash.com/photo-1577493340887-b7bfff55027e?q=80&w=1974&auto=format&fit=crop" alt="Akasia Place" loading="lazy"></div>
+          <div class="card-content">
+            <div class="provider-name">Akasia Place</div>
+            <div class="provider-type"><i class="fas fa-door-open"></i> Flats</div>
+            <div class="provider-desc">Modern 1-2 bed flats, 24hr security, close to schools.</div>
+            <div class="contact-grid">
+              <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+27185671234">+27 18 567 1234</a></div>
+              <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27855671234">+27 85 567 1234</a></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:info@akasiaplace.co.za">info@akasiaplace.co.za</a></div>
+              <div class="contact-item"><i class="fas fa-globe"></i> <a href="#">www.akasiaplace.co.za</a></div>
+            </div>
+            <div class="meta-row"><span class="units">24 units</span><span class="rating"><i class="fas fa-star"></i> <span>4.3</span></span></div>
+            <button class="profile-btn" onclick="alert('Profile page for Akasia Place')"><i class="fas fa-user-circle"></i> View profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- pagination (static) -->
+    <div class="pagination">
+      <span class="page-item active">1</span>
+      <span class="page-item">2</span>
+      <span class="page-item">3</span>
+      <span class="page-item">⋯</span>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+      <div class="footer-col">
+        <div class="logo" style="font-size: 2rem;">PotchAcco<span>.</span></div>
+        <p>Your single destination for every rental in Potchefstroom. Student, travel, love — we’ve got it.</p>
+        <div class="social">
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-x-twitter"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div>
+          <a href="#">Explore</a>
+          <a href="#">Student housing</a>
+          <a href="#">B&B / Guesthouses</a>
+          <a href="#">Travel stays</a>
+          <a href="#">All providers</a>
+        </div>
+        <div>
+          <a href="#">Company</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">List your property</a>
+          <a href="#">Trust & safety</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p style="text-align: center; color: #aaa; padding-bottom: 30px;">© 2025 PotchAcco — premium real estate showcase</p>
+  </div>
+</body>
+</html>

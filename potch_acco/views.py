@@ -4,6 +4,37 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def index(request):
+def get_home(request):
 
-    return render(request, "thehome.html")
+    return render(request, "home.html")
+
+def get_rental_provider(request):
+
+    return render(request, "provider.html")
+
+def get_about(request):
+
+    return render(request, "about.html")
+
+def get_contact(request):
+
+    return render(request, "contact.html")
+
+def get_listed(request):
+
+    return render(request, "listing.html")
+
+def get_profile(request):
+
+    return render(request, "profile.html")
+
+def get_ts_cs(request):
+
+    return render(request, "ts_cs.html")
+
+def get_t_and_s(request):
+
+    return render(request, "trust_safety.html")
+
+
+
