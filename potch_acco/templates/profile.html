@@ -1,8 +1,8 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Villa Bravado · provider profile | PotchAcco</title>
   <!-- Font & icons (same across all pages) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,13 +40,14 @@
       --fb-gray: #65676b;
     }
 
-    /* navbar (identical, but cleaner for FB style) */
+    /* navbar with burger */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
       border-bottom: 1px solid var(--border-light);
+      position: relative;
     }
     .logo {
       font-weight: 700;
@@ -58,6 +59,8 @@
       color: var(--off-black);
       font-weight: 300;
     }
+
+    /* desktop navigation */
     .nav-links {
       display: flex;
       gap: 40px;
@@ -78,6 +81,60 @@
     }
     .contact-btn:hover {
       background: var(--deep-green);
+    }
+
+    /* --- BURGER MENU (same as other pages) --- */
+    .burger-checkbox {
+      display: none;
+    }
+    .burger-icon {
+      display: none;
+      font-size: 2rem;
+      color: var(--deep-green);
+      cursor: pointer;
+      user-select: none;
+      z-index: 100;
+    }
+    /* mobile nav container (hidden until burger clicked) */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background-color: var(--pure-white);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 20px 32px;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 99;
+      gap: 16px;
+    }
+    .mobile-nav a {
+      text-decoration: none;
+      color: var(--off-black);
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+    .mobile-nav .contact-btn {
+      display: inline-block;
+      text-align: center;
+      margin-top: 8px;
+      background: var(--pure-black);
+      color: var(--pure-white) !important;
+      border: none;
+      padding: 12px 20px;
+    }
+
+    /* burger toggle: show mobile nav when checkbox checked */
+    #burger-toggle:checked ~ .mobile-nav {
+      display: flex;
     }
 
     /* ----- FACEBOOK‑STYLE PROFILE HEADER ----- */
@@ -262,12 +319,7 @@
     .address-street {
       color: var(--off-black);
     }
-    @media (max-width: 600px) {
-      .address-item {
-        flex-wrap: wrap;
-      }
-    }
-
+    
     /* main about card */
     .about-card {
       background: white;
@@ -374,8 +426,8 @@
       margin-right: 8px;
     }
 
-    /* responsive */
-    @media (max-width: 700px) {
+    /* ===== MOBILE RESPONSIVE + BURGER ACTIVATION ===== */
+    @media (max-width: 800px) {
       .fb-profile-row {
         flex-direction: column;
         align-items: flex-start;
@@ -389,13 +441,111 @@
         width: 120px;
         height: 120px;
       }
+      .fb-name-area h1 {
+        font-size: 2rem;
+      }
     }
+
+    /* on narrow screens: hide desktop nav-links, show burger icon */
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;  /* hide original desktop nav */
+      }
+      .burger-icon {
+        display: block;  /* show burger */
+      }
+      /* adjust container padding for mobile */
+      .container {
+        padding: 0 16px;
+      }
+      
+      .fb-cover {
+        height: 200px;
+      }
+      
+      .contact-summary-fb {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px;
+      }
+      
+      .properties-card, .about-card {
+        padding: 20px 18px;
+      }
+      
+      .properties-card h2, .about-card h2 {
+        font-size: 1.6rem;
+      }
+      
+      .address-item {
+        padding: 12px 16px;
+      }
+      
+      .address-text {
+        font-size: 1rem;
+      }
+      
+      .footer {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .footer-links {
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .fb-name-area h1 {
+        font-size: 1.7rem;
+      }
+      .fb-profile-pic {
+        width: 100px;
+        height: 100px;
+        margin-top: -40px;
+      }
+      .back-link a {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+      .contact-item-fb {
+        font-size: 0.95rem;
+      }
+      .contact-item-fb i {
+        font-size: 1.5rem;
+        width: 30px;
+      }
+    }
+
+    /* preserve all original href exactly */
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- nav (same as all pages) -->
-     {% include "nav.html" %}
+    <!-- nav with burger (same as other pages) -->
+    <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      
+      <!-- Desktop navigation (your exact links) -->
+      <div class="nav-links">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
+
+      <!-- BURGER CHECKBOX + ICON (hidden checkbox, burger icon) -->
+      <input type="checkbox" id="burger-toggle" class="burger-checkbox" style="display: none;">
+      <label for="burger-toggle" class="burger-icon" aria-label="Menu"><i class="fas fa-bars"></i></label>
+
+      <!-- MOBILE NAV (hidden until checkbox checked) – same exact links -->
+      <div class="mobile-nav">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
+    </nav>
 
     <!-- simple back navigation (demo) -->
     <div class="back-link">
@@ -435,33 +585,29 @@
       <div class="address-list">
         <!-- address 1 -->
         <div class="address-item">
-          
+          <div class="address-icon"><i class="fas fa-map-pin"></i></div>
           <div class="address-text">
-            
             <span class="address-street">15 Steve Biko Avenue, Potchefstroom</span>
           </div>
         </div>
         <!-- address 2 -->
         <div class="address-item">
-          
+          <div class="address-icon"><i class="fas fa-map-pin"></i></div>
           <div class="address-text">
-             
             <span class="address-street">22 Esselen Street, Potchefstroom</span>
           </div>
         </div>
         <!-- address 3 -->
         <div class="address-item">
-          
+          <div class="address-icon"><i class="fas fa-map-pin"></i></div>
           <div class="address-text">
-             
             <span class="address-street">8 Peter Mokaba Street, Potchefstroom</span>
           </div>
         </div>
         <!-- address 4 -->
         <div class="address-item">
-          
+          <div class="address-icon"><i class="fas fa-map-pin"></i></div>
           <div class="address-text">
-           
             <span class="address-street">3 Kock Street, Potchefstroom</span>
           </div>
         </div>

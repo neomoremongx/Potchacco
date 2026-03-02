@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>About us | PotchAcco · by Stacguru</title>
   <!-- Font & icons (same as home) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,13 +38,14 @@
       --card-shadow: 0 20px 30px -10px rgba(0, 40, 20, 0.15);
     }
 
-    /* navbar (identical) */
+    /* navbar (identical to home with burger) */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
       border-bottom: 1px solid var(--border-light);
+      position: relative;
     }
     .logo {
       font-weight: 700;
@@ -56,6 +57,8 @@
       color: var(--off-black);
       font-weight: 300;
     }
+
+    /* desktop navigation */
     .nav-links {
       display: flex;
       gap: 40px;
@@ -76,6 +79,51 @@
     }
     .contact-btn:hover {
       background: var(--deep-green);
+    }
+
+    /* --- BURGER MENU (same as home) --- */
+    .burger-checkbox {
+      display: none;
+    }
+    .burger-icon {
+      display: none;
+      font-size: 2rem;
+      color: var(--deep-green);
+      cursor: pointer;
+      user-select: none;
+      z-index: 100;
+    }
+    /* mobile nav container (hidden until burger clicked) */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background-color: var(--pure-white);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 20px 32px;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 99;
+      gap: 16px;
+    }
+    .mobile-nav a {
+      text-decoration: none;
+      color: var(--off-black);
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    /* burger toggle: show mobile nav when checkbox checked */
+    #burger-toggle:checked ~ .mobile-nav {
+      display: flex;
     }
 
     /* about hero */
@@ -369,17 +417,92 @@
       border-top: 1px solid var(--border-light);
       margin: 10px 0 30px;
     }
-    @media (max-width: 700px) {
-      .about-hero { flex-direction: column; }
-      .stats-row { flex-direction: column; }
-      .company-card { flex-direction: column; align-items: flex-start; }
+
+    /* ===== MOBILE RESPONSIVE + BURGER ACTIVATION ===== */
+    @media (max-width: 800px) {
+      .about-hero { 
+        flex-direction: column; 
+      }
     }
+
+    /* on narrow screens: hide desktop nav-links, show burger icon */
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;  /* hide original desktop nav */
+      }
+      .burger-icon {
+        display: block;  /* show burger */
+      }
+      /* adjust container padding for mobile */
+      .container {
+        padding: 0 20px;
+      }
+      .stats-row { 
+        flex-direction: column; 
+      }
+      .company-card { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        padding: 30px;
+      }
+      .about-hero-left h1 {
+        font-size: 2.5rem;
+      }
+      .story-grid {
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .about-hero-left h1 {
+        font-size: 2rem;
+      }
+      .stat-number {
+        font-size: 2.2rem;
+      }
+      .story-text h2 {
+        font-size: 1.8rem;
+      }
+      .about-cta {
+        padding: 30px 20px;
+      }
+      .about-cta h3 {
+        font-size: 1.6rem;
+      }
+      .company-name {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* preserve all original href exactly */
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- nav (same as home) -->
-    {% include "nav.html" %}
+    <!-- nav with burger (same as home) -->
+    <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      
+      <!-- Desktop navigation (your exact links) -->
+      <div class="nav-links">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
+
+      <!-- BURGER CHECKBOX + ICON (hidden checkbox, burger icon) -->
+      <input type="checkbox" id="burger-toggle" class="burger-checkbox" style="display: none;">
+      <label for="burger-toggle" class="burger-icon" aria-label="Menu"><i class="fas fa-bars"></i></label>
+
+      <!-- MOBILE NAV (hidden until checkbox checked) – same exact links -->
+      <div class="mobile-nav">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
+    </nav>
 
     <!-- about hero (updated to mention Stacguru origin) -->
     <div class="about-hero">
@@ -423,8 +546,6 @@
       </div>
     </div>
 
-    <!-- Stacguru feature – the company behind PotchAcco (no individual founder named) -->
-    
     <!-- small banner with cta -->
     <div class="about-cta">
       <h3><i class="fas fa-magnifying-glass" style="margin-right: 12px;"></i> Find your place – directly from reliable providers</h3>
@@ -433,5 +554,6 @@
 
     <!-- footer (identical to home) -->
      {% include "footer.html" %}
+  </div>
 </body>
 </html>

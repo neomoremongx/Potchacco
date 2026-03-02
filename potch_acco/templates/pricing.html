@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Pricing · PotchAcco | affordable R250/month listing</title>
   <!-- Font & icons (simple, consistent) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,13 +37,14 @@
       --card-shadow: 0 20px 30px -10px rgba(0, 40, 20, 0.1);
     }
 
-    /* navbar (simple) */
+    /* navbar with burger */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
       border-bottom: 1px solid var(--border-light);
+      position: relative;
     }
     .logo {
       font-weight: 700;
@@ -55,14 +56,82 @@
       color: var(--off-black);
       font-weight: 300;
     }
+
+    /* desktop navigation */
     .nav-links {
       display: flex;
       gap: 40px;
       font-weight: 500;
+      color: var(--off-black);
     }
     .nav-links a {
       text-decoration: none;
       color: inherit;
+    }
+    .contact-btn {
+      background: var(--pure-black);
+      color: var(--pure-white) !important;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .contact-btn:hover {
+      background: var(--deep-green);
+    }
+
+    /* --- BURGER MENU (same as other pages) --- */
+    .burger-checkbox {
+      display: none;
+    }
+    .burger-icon {
+      display: none;
+      font-size: 2rem;
+      color: var(--deep-green);
+      cursor: pointer;
+      user-select: none;
+      z-index: 100;
+    }
+    /* mobile nav container (hidden until burger clicked) */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background-color: var(--pure-white);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 20px 32px;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 99;
+      gap: 16px;
+    }
+    .mobile-nav a {
+      text-decoration: none;
+      color: var(--off-black);
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+    .mobile-nav .contact-btn {
+      display: inline-block;
+      text-align: center;
+      margin-top: 8px;
+      background: var(--pure-black);
+      color: var(--pure-white) !important;
+      border: none;
+      padding: 12px 20px;
+    }
+
+    /* burger toggle: show mobile nav when checkbox checked */
+    #burger-toggle:checked ~ .mobile-nav {
+      display: flex;
     }
 
     /* pricing header */
@@ -171,7 +240,6 @@
     }
 
     /* simple footer */
-    
     .footer {
       padding: 40px 0 60px;
       color: #5c5c5c;
@@ -210,12 +278,96 @@
       border-top: 1px solid var(--border-light);
       margin: 10px 0 30px;
     }
+
+    /* ===== MOBILE RESPONSIVE + BURGER ACTIVATION ===== */
+    /* on narrow screens: hide desktop nav-links, show burger icon */
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;  /* hide original desktop nav */
+      }
+      .burger-icon {
+        display: block;  /* show burger */
+      }
+      /* adjust container padding for mobile */
+      .container {
+        padding: 0 20px;
+      }
+      
+      .pricing-header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .pricing-card {
+        padding: 32px 20px;
+        margin: 30px auto 40px;
+      }
+      
+      .price-tag {
+        font-size: 3rem;
+      }
+      
+      .feature-list li {
+        font-size: 0.95rem;
+      }
+      
+      .footer {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .footer-links {
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .pricing-header h1 {
+        font-size: 1.9rem;
+      }
+      .pricing-header p {
+        font-size: 1rem;
+      }
+      .price-tag {
+        font-size: 2.5rem;
+      }
+      .price-period {
+        font-size: 1rem;
+      }
+      .pricing-cta {
+        padding: 14px 24px;
+        font-size: 1rem;
+      }
+    }
+
+    /* preserve all original href exactly */
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- simple nav -->
-     {% include "nav.html" %}
+    <!-- nav with burger (same as other pages) -->
+    <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      
+      <!-- Desktop navigation (your exact links) -->
+      <div class="nav-links">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
+
+      <!-- BURGER CHECKBOX + ICON (hidden checkbox, burger icon) -->
+      <input type="checkbox" id="burger-toggle" class="burger-checkbox" style="display: none;">
+      <label for="burger-toggle" class="burger-icon" aria-label="Menu"><i class="fas fa-bars"></i></label>
+
+      <!-- MOBILE NAV (hidden until checkbox checked) – same exact links -->
+      <div class="mobile-nav">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
+    </nav>
 
     <!-- pricing header -->
     <div class="pricing-header">

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Trust & safety · PotchAcco | stay secure</title>
   <!-- Font & icons (same across all pages) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,13 +38,14 @@
       --card-shadow: 0 20px 30px -10px rgba(0, 40, 20, 0.15);
     }
 
-    /* navbar (identical) */
+    /* navbar with burger */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
       border-bottom: 1px solid var(--border-light);
+      position: relative;
     }
     .logo {
       font-weight: 700;
@@ -56,6 +57,8 @@
       color: var(--off-black);
       font-weight: 300;
     }
+
+    /* desktop navigation */
     .nav-links {
       display: flex;
       gap: 40px;
@@ -76,6 +79,60 @@
     }
     .contact-btn:hover {
       background: var(--deep-green);
+    }
+
+    /* --- BURGER MENU (same as other pages) --- */
+    .burger-checkbox {
+      display: none;
+    }
+    .burger-icon {
+      display: none;
+      font-size: 2rem;
+      color: var(--deep-green);
+      cursor: pointer;
+      user-select: none;
+      z-index: 100;
+    }
+    /* mobile nav container (hidden until burger clicked) */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background-color: var(--pure-white);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 20px 32px;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 99;
+      gap: 16px;
+    }
+    .mobile-nav a {
+      text-decoration: none;
+      color: var(--off-black);
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+    .mobile-nav .contact-btn {
+      display: inline-block;
+      text-align: center;
+      margin-top: 8px;
+      background: var(--pure-black);
+      color: var(--pure-white) !important;
+      border: none;
+      padding: 12px 20px;
+    }
+
+    /* burger toggle: show mobile nav when checkbox checked */
+    #burger-toggle:checked ~ .mobile-nav {
+      display: flex;
     }
 
     /* page header */
@@ -298,15 +355,161 @@
       margin: 10px 0 30px;
     }
 
-    @media (max-width: 700px) {
-      .detail-block { flex-direction: column !important; }
+    /* ===== MOBILE RESPONSIVE + BURGER ACTIVATION ===== */
+    @media (max-width: 800px) {
+      .detail-block { 
+        flex-direction: column !important; 
+      }
+      .detail-icon {
+        text-align: center;
+        width: 100%;
+      }
     }
+
+    /* on narrow screens: hide desktop nav-links, show burger icon */
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;  /* hide original desktop nav */
+      }
+      .burger-icon {
+        display: block;  /* show burger */
+      }
+      /* adjust container padding for mobile */
+      .container {
+        padding: 0 20px;
+      }
+      
+      .trust-header h1 {
+        font-size: 2.4rem;
+      }
+      
+      .trust-intro {
+        padding: 30px 20px;
+        font-size: 1rem;
+      }
+      
+      .pillars-grid {
+        gap: 20px;
+      }
+      
+      .pillar-card {
+        padding: 28px 20px;
+      }
+      
+      .pillar-title {
+        font-size: 1.5rem;
+      }
+      
+      .detail-block {
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+      
+      .detail-content h2 {
+        font-size: 1.6rem;
+      }
+      
+      .alert-box {
+        padding: 24px 20px;
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .trust-cta {
+        padding: 30px 25px;
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .trust-cta h3 {
+        font-size: 1.8rem;
+      }
+      
+      .footer {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .footer-links {
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .trust-header h1 {
+        font-size: 2rem;
+      }
+      .trust-header p {
+        font-size: 1rem;
+      }
+      
+      .pillar-icon {
+        font-size: 2.2rem;
+      }
+      
+      .pillar-title {
+        font-size: 1.3rem;
+      }
+      
+      .detail-icon {
+        font-size: 2.5rem;
+      }
+      
+      .detail-content h2 {
+        font-size: 1.4rem;
+      }
+      
+      .detail-content p, .detail-content li {
+        font-size: 0.95rem;
+      }
+      
+      .alert-box i {
+        font-size: 2.5rem;
+      }
+      
+      .alert-box p {
+        font-size: 1rem;
+      }
+      
+      .trust-cta h3 {
+        font-size: 1.5rem;
+      }
+      
+      .trust-cta .cta-link {
+        padding: 12px 24px;
+        font-size: 1rem;
+      }
+    }
+
+    /* preserve all original href exactly */
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- nav (same as all pages) -->
-    {% include "nav.html" %}
+    <!-- nav with burger (same as other pages) -->
+    <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      
+      <!-- Desktop navigation (your exact links) -->
+      <div class="nav-links">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
+
+      <!-- BURGER CHECKBOX + ICON (hidden checkbox, burger icon) -->
+      <input type="checkbox" id="burger-toggle" class="burger-checkbox" style="display: none;">
+      <label for="burger-toggle" class="burger-icon" aria-label="Menu"><i class="fas fa-bars"></i></label>
+
+      <!-- MOBILE NAV (hidden until checkbox checked) – same exact links -->
+      <div class="mobile-nav">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
+    </nav>
 
     <!-- page header -->
     <div class="trust-header">

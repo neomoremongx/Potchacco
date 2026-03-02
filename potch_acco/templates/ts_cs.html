@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Terms & conditions · PotchAcco</title>
   <!-- Font & icons (same across all pages) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,13 +38,14 @@
       --card-shadow: 0 20px 30px -10px rgba(0, 40, 20, 0.15);
     }
 
-    /* navbar (identical) */
+    /* navbar with burger */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
       border-bottom: 1px solid var(--border-light);
+      position: relative;
     }
     .logo {
       font-weight: 700;
@@ -56,6 +57,8 @@
       color: var(--off-black);
       font-weight: 300;
     }
+
+    /* desktop navigation */
     .nav-links {
       display: flex;
       gap: 40px;
@@ -76,6 +79,60 @@
     }
     .contact-btn:hover {
       background: var(--deep-green);
+    }
+
+    /* --- BURGER MENU (same as other pages) --- */
+    .burger-checkbox {
+      display: none;
+    }
+    .burger-icon {
+      display: none;
+      font-size: 2rem;
+      color: var(--deep-green);
+      cursor: pointer;
+      user-select: none;
+      z-index: 100;
+    }
+    /* mobile nav container (hidden until burger clicked) */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background-color: var(--pure-white);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 20px 32px;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 99;
+      gap: 16px;
+    }
+    .mobile-nav a {
+      text-decoration: none;
+      color: var(--off-black);
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+    .mobile-nav .contact-btn {
+      display: inline-block;
+      text-align: center;
+      margin-top: 8px;
+      background: var(--pure-black);
+      color: var(--pure-white) !important;
+      border: none;
+      padding: 12px 20px;
+    }
+
+    /* burger toggle: show mobile nav when checkbox checked */
+    #burger-toggle:checked ~ .mobile-nav {
+      display: flex;
     }
 
     /* page header */
@@ -115,9 +172,7 @@
       padding: 60px 56px;
       margin: 30px 0 60px;
     }
-    @media (max-width: 700px) {
-      .terms-card { padding: 35px 25px; }
-    }
+    
 
     /* terms sections */
     .terms-section {
@@ -219,12 +274,115 @@
       border-top: 1px solid var(--border-light);
       margin: 10px 0 30px;
     }
+
+    /* ===== MOBILE RESPONSIVE + BURGER ACTIVATION ===== */
+    /* on narrow screens: hide desktop nav-links, show burger icon */
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;  /* hide original desktop nav */
+      }
+      .burger-icon {
+        display: block;  /* show burger */
+      }
+      /* adjust container padding for mobile */
+      .container {
+        padding: 0 20px;
+      }
+      
+      .terms-header h1 {
+        font-size: 2.4rem;
+      }
+      
+      .terms-card {
+        padding: 30px 20px;
+        margin: 20px 0 40px;
+      }
+      
+      .terms-section h2 {
+        font-size: 1.6rem;
+      }
+      
+      .terms-section h2 i {
+        font-size: 1.8rem;
+      }
+      
+      .terms-section p, .terms-section li {
+        font-size: 0.95rem;
+      }
+      
+      .legal-highlight {
+        padding: 18px 16px;
+      }
+      
+      .footer {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .footer-links {
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .terms-header h1 {
+        font-size: 2rem;
+      }
+      .terms-header p {
+        font-size: 1rem;
+      }
+      
+      .terms-card {
+        padding: 25px 16px;
+      }
+      
+      .terms-section h2 {
+        font-size: 1.4rem;
+        gap: 8px;
+      }
+      
+      .terms-section h2 i {
+        font-size: 1.5rem;
+      }
+      
+      .terms-section p, .terms-section li {
+        font-size: 0.9rem;
+      }
+      
+      .last-updated {
+        font-size: 0.85rem;
+      }
+    }
+
+    /* preserve all original href exactly */
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- nav (same as all pages) -->
-     {% include "nav.html" %}
+    <!-- nav with burger (same as other pages) -->
+    <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      
+      <!-- Desktop navigation (your exact links) -->
+      <div class="nav-links">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
+
+      <!-- BURGER CHECKBOX + ICON (hidden checkbox, burger icon) -->
+      <input type="checkbox" id="burger-toggle" class="burger-checkbox" style="display: none;">
+      <label for="burger-toggle" class="burger-icon" aria-label="Menu"><i class="fas fa-bars"></i></label>
+
+      <!-- MOBILE NAV (hidden until checkbox checked) – same exact links -->
+      <div class="mobile-nav">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
+    </nav>
 
     <!-- page header -->
     <div class="terms-header">
