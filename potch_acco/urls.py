@@ -13,5 +13,7 @@ urlpatterns = [
     path("trust", views.get_t_and_s, name="get_t_and_s"),
     path("terms", views.get_ts_cs, name="get_ts_cs"),
     path("category", views.get_specific_category, name="get_specific_category"),
-    path("pricing", views.get_pricing, name="get_pricing")
+    path("pricing", views.get_pricing, name="get_pricing"),
+    path("property", views.get_property, name="get_property")
+
 ]

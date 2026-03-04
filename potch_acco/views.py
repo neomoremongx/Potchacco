@@ -44,5 +44,9 @@ def get_pricing(request):
 
     return render(request, "pricing.html")
 
+def get_property(request):
+
+    return render(request, "property.html")
+
 
 
