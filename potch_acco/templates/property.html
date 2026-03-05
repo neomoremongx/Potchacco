@@ -95,7 +95,7 @@
       user-select: none;
       z-index: 100;
     }
-    .mobile-nav {
+     .mobile-nav {
       display: none;
       flex-direction: column;
       background-color: var(--pure-white);
@@ -115,22 +115,12 @@
       color: var(--off-black);
       font-weight: 500;
       font-size: 1.2rem;
-      padding: 12px 0;
+      padding: 10px 0;
       border-bottom: 1px solid var(--border-light);
     }
     .mobile-nav a:last-child {
       border-bottom: none;
     }
-    .mobile-nav .contact-btn {
-      display: inline-block;
-      text-align: center;
-      margin-top: 8px;
-      background: var(--pure-black);
-      color: var(--pure-white) !important;
-      border: none;
-      padding: 12px 20px;
-    }
-
     #burger-toggle:checked ~ .mobile-nav {
       display: flex;
     }
@@ -762,7 +752,14 @@
 <body>
   <div class="container">
     <!-- nav with burger -->
-     {% include "nav.html" %}
+    <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      <div class="nav-links">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
 
       <input type="checkbox" id="burger-toggle" class="burger-checkbox" style="display: none;">
       <label for="burger-toggle" class="burger-icon" aria-label="Menu"><i class="fas fa-bars"></i></label>
@@ -790,7 +787,7 @@
             <span>12 Kock Street, Potchefstroom</span>
           </div>
         </div>
-        <span class="property-type-badge"><i class="fas fa-home"></i> Main House</span>
+        
       </div>
 
       <!-- Provider Mini Card -->
@@ -798,9 +795,9 @@
         <img class="provider-mini-img" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop" alt="Villa Bravado">
         <div class="provider-mini-info">
           <h3>Villa Bravado</h3>
-          <a href="profile"><i class="fas fa-building"></i> View provider profile</a>
+          
         </div>
-        <a href="profile" class="view-profile-btn"><i class="fas fa-external-link-alt"></i> View Profile</a>
+        
       </div>
 
       <!-- Gallery Section - SQUARE CORNERS -->
@@ -820,220 +817,18 @@
       </div>
 
       <!-- Quick Info Cards -->
-      <div class="quick-info-grid">
-        <div class="info-card">
-          <i class="fas fa-bed"></i>
-          <div class="info-card-content">
-            <h4>Bedrooms</h4>
-            <p>6 Available</p>
-          </div>
-        </div>
-        <div class="info-card">
-          <i class="fas fa-bath"></i>
-          <div class="info-card-content">
-            <h4>Bathrooms</h4>
-            <p>4 Shared</p>
-          </div>
-        </div>
-        <div class="info-card">
-          <i class="fas fa-ruler-combined"></i>
-          <div class="info-card-content">
-            <h4>Property Size</h4>
-            <p>350 m²</p>
-          </div>
-        </div>
-        <div class="info-card">
-          <i class="fas fa-calendar-alt"></i>
-          <div class="info-card-content">
-            <h4>Available From</h4>
-            <p>Immediately</p>
-          </div>
-        </div>
-      </div>
+       
 
       <!-- Tabs Navigation -->
-      <div class="property-tabs">
-        <button class="tab-btn active" onclick="showTab('rooms')"><i class="fas fa-bed"></i> Rooms</button>
-        <button class="tab-btn" onclick="showTab('amenities')"><i class="fas fa-wifi"></i> Amenities</button>
-        <button class="tab-btn" onclick="showTab('reviews')"><i class="fas fa-star"></i> Reviews</button>
-        <button class="tab-btn" onclick="showTab('location')"><i class="fas fa-map"></i> Location</button>
-      </div>
-
-      <!-- Rooms Tab - SQUARE CORNERS -->
-      <div id="rooms" class="tab-content active">
-        <div class="rooms-grid">
-          <!-- Room 1 -->
-          <div class="room-card">
-            <div class="room-img">
-              <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=2071&auto=format&fit=crop" alt="Premium Studio">
-            </div>
-            <div class="room-details">
-              <h3>Premium Studio</h3>
-              <div class="room-features">
-                <span><i class="fas fa-ruler"></i> 28m²</span>
-                <span><i class="fas fa-user"></i> 1 person</span>
-              </div>
-              <p><i class="fas fa-check" style="color: var(--deep-green);"></i> Private bathroom</p>
-              <p><i class="fas fa-check" style="color: var(--deep-green);"></i> Kitchenette</p>
-              <div class="room-price">R4,500 <span>/ month</span></div>
-              <button class="inquiry-btn"><i class="fas fa-envelope"></i> Request Info</button>
-            </div>
-          </div>
-
-          <!-- Room 2 -->
-          <div class="room-card">
-            <div class="room-img">
-              <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=2070&auto=format&fit=crop" alt="Shared Double">
-            </div>
-            <div class="room-details">
-              <h3>Shared Double Room</h3>
-              <div class="room-features">
-                <span><i class="fas fa-ruler"></i> 24m²</span>
-                <span><i class="fas fa-user-friends"></i> 2 people</span>
-              </div>
-              <p><i class="fas fa-check" style="color: var(--deep-green);"></i> Shared bathroom</p>
-              <p><i class="fas fa-check" style="color: var(--deep-green);"></i> Study area</p>
-              <div class="room-price">R3,200 <span>/ month per person</span></div>
-              <button class="inquiry-btn"><i class="fas fa-envelope"></i> Request Info</button>
-            </div>
-          </div>
-
-          <!-- Room 3 -->
-          <div class="room-card">
-            <div class="room-img">
-              <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2158&auto=format&fit=crop" alt="Standard Single">
-            </div>
-            <div class="room-details">
-              <h3>Standard Single</h3>
-              <div class="room-features">
-                <span><i class="fas fa-ruler"></i> 18m²</span>
-                <span><i class="fas fa-user"></i> 1 person</span>
-              </div>
-              <p><i class="fas fa-check" style="color: var(--deep-green);"></i> Shared bathroom</p>
-              <p><i class="fas fa-check" style="color: var(--deep-green);"></i> Desk & chair</p>
-              <div class="room-price">R2,800 <span>/ month</span></div>
-              <button class="inquiry-btn"><i class="fas fa-envelope"></i> Request Info</button>
-            </div>
-          </div>
-
-          <!-- Room 4 -->
-          <div class="room-card">
-            <div class="room-img">
-              <img src="https://images.unsplash.com/photo-1630699144867-37acec97df5a?q=80&w=2072&auto=format&fit=crop" alt="Deluxe Studio">
-            </div>
-            <div class="room-details">
-              <h3>Deluxe Studio</h3>
-              <div class="room-features">
-                <span><i class="fas fa-ruler"></i> 32m²</span>
-                <span><i class="fas fa-user"></i> 1 person</span>
-              </div>
-              <p><i class="fas fa-check" style="color: var(--deep-green);"></i> Private bathroom</p>
-              <p><i class="fas fa-check" style="color: var(--deep-green);"></i> Small kitchen</p>
-              <div class="room-price">R5,200 <span>/ month</span></div>
-              <button class="inquiry-btn"><i class="fas fa-envelope"></i> Request Info</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Amenities Tab -->
-      <div id="amenities" class="tab-content">
-        <div class="amenities-grid">
-          <div class="amenity-item"><i class="fas fa-wifi"></i> <span>High-speed Fibre</span></div>
-          <div class="amenity-item"><i class="fas fa-shield-alt"></i> <span>24/7 Security</span></div>
-          <div class="amenity-item"><i class="fas fa-parking"></i> <span>Secure Parking</span></div>
-          <div class="amenity-item"><i class="fas fa-water"></i> <span>Borehole Water</span></div>
-          <div class="amenity-item"><i class="fas fa-tree"></i> <span>Garden Access</span></div>
-          <div class="amenity-item"><i class="fas fa-tshirt"></i> <span>Laundry Facilities</span></div>
-          <div class="amenity-item"><i class="fas fa-dumbbell"></i> <span>Gym Room</span></div>
-          <div class="amenity-item"><i class="fas fa-book"></i> <span>Study Lounge</span></div>
-          <div class="amenity-item"><i class="fas fa-fire-extinguisher"></i> <span>Fire Safety</span></div>
-          <div class="amenity-item"><i class="fas fa-snowflake"></i> <span>Air Conditioning</span></div>
-        </div>
-      </div>
-
-      <!-- Reviews Tab -->
-      <div id="reviews" class="tab-content">
-        <div class="reviews-summary">
-          <div class="rating-large">
-            <div class="average-rating">
-              <div class="average-number">4.8</div>
-              <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-              <div>24 reviews</div>
-            </div>
-            <div>
-              <p><strong>94%</strong> of guests recommend</p>
-              <p>Based on recent ratings</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-header">
-            <span class="reviewer-name">Thabo M.</span>
-            <span class="review-date">2 weeks ago</span>
-          </div>
-          <div class="stars" style="margin-bottom: 8px;">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p>"Great place to stay! Very close to NWU and the security is excellent. The room is spacious and the fibre is really fast. Landlord is very responsive."</p>
-        </div>
-
-        <div class="review-card">
-          <div class="review-header">
-            <span class="reviewer-name">Sarah J.</span>
-            <span class="review-date">1 month ago</span>
-          </div>
-          <div class="stars" style="margin-bottom: 8px;">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p>"Love the community vibe here! The garden is beautiful and the study lounge is perfect for exam season. Highly recommend the garden village rooms."</p>
-        </div>
-
-        <div class="review-card">
-          <div class="review-header">
-            <span class="reviewer-name">Pieter v.</span>
-            <span class="review-date">2 months ago</span>
-          </div>
-          <div class="stars" style="margin-bottom: 8px;">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-          </div>
-          <p>"Good value for money. The main house has character and the rooms are well maintained. Borehole water is a plus during water shortages."</p>
-        </div>
-      </div>
-
-      <!-- Location Tab -->
-      <div id="location" class="tab-content">
-        <div class="map-placeholder">
-          <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-right: 10px;"></i> Interactive Map Loading...
-        </div>
-        
-        <h3 style="margin: 20px 0 15px;">Nearby Places</h3>
-        <div class="nearby-places">
-          <div class="nearby-item"><i class="fas fa-university"></i> <span>NWU Potchefstroom - 5 min walk</span></div>
-          <div class="nearby-item"><i class="fas fa-shopping-cart"></i> <span>Checkers - 10 min walk</span></div>
-          <div class="nearby-item"><i class="fas fa-bus"></i> <span>Taxi Rank - 8 min walk</span></div>
-          <div class="nearby-item"><i class="fas fa-coffee"></i> <span>Village Café - 3 min walk</span></div>
-          <div class="nearby-item"><i class="fas fa-dumbbell"></i> <span>Virgin Active - 15 min walk</span></div>
-          <div class="nearby-item"><i class="fas fa-hospital"></i> <span>Mediclinic - 10 min drive</span></div>
-        </div>
-      </div>
-    </div>
-
+       
     <!-- Contact Card -->
     <div class="contact-card">
-      <h3><i class="fas fa-headset"></i> Contact Villa Bravado about this property</h3>
+      <h3>Contact Villa Bravado about this property</h3>
       <div class="contact-methods">
         <a href="tel:+27181234567" class="contact-method"><i class="fas fa-phone-alt"></i> Call: +27 18 123 4567</a>
         <a href="https://wa.me/27831234567" class="contact-method"><i class="fab fa-whatsapp"></i> WhatsApp: +27 83 123 4567</a>
         <a href="mailto:res@villabravado.co.za" class="contact-method"><i class="fas fa-envelope"></i> Email: res@villabravado.co.za</a>
-        <a href="#" class="contact-method"><i class="fas fa-calendar-alt"></i> Schedule a viewing</a>
+        
       </div>
     </div>
 
@@ -1042,10 +837,10 @@
       <span class="close-modal" onclick="closeModal()">&times;</span>
       <img class="modal-content" id="modalImage">
     </div>
-
+  </div>
     <!-- footer -->
      {% include "footer.html" %}
-  </div>
+  
 
   <script>
     // Tab functionality

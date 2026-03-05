@@ -619,7 +619,14 @@
 <body>
   <div class="container">
     <!-- nav with burger (same as other pages) -->
-     {% include "nav.html" %}
+     <nav class="navbar">
+      <div class="logo">PotchAcco<span>.</span></div>
+      <div class="nav-links">
+        <a href="home">Home</a>
+        <a href="providers">Rental Providers</a>
+        <a href="about">About</a>
+        <a href="contact">Contact</a>
+      </div>
 
       <!-- BURGER CHECKBOX + ICON (hidden checkbox, burger icon) -->
       <input type="checkbox" id="burger-toggle" class="burger-checkbox" style="display: none;">
@@ -667,7 +674,7 @@
     
     <!-- IMPROVED PROPERTIES CARD WITH PROPERLY SIZED THUMBNAILS AND VIEW BUTTONS -->
     <div class="properties-card">
-      <h2><i class="fas fa-building"></i> Our properties</h2>
+      <h2>Properties</h2>
       <div class="address-list">
         <!-- property 1: main residence with properly sized image and view button -->
         <div class="address-item">
@@ -712,7 +719,7 @@
 
     <!-- main about section (full width card) -->
     <div class="about-card">
-      <h2><i class="fas fa-user-tie"></i> About us</h2>
+      <h2><i class="fas fa-user-tie"></i> About </h2>
       <div class="provider-description">
         <p>Villa Bravado is a family-run student accommodation provider located just 2 minutes from NWU Potchefstroom. Our mission is to create a safe, inclusive community where students can thrive. We offer premium studios and shared flats with high-speed fibre, borehole water, and 24/7 security.</p>
         <p>We believe that where you live shapes your university experience. That's why every unit is designed for both study and connection – with communal gardens, study lounges, and regular social events. Our residents become part of the Bravado family.</p>
